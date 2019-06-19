@@ -23,7 +23,6 @@ export default class App {
 
     canvasContainer.appendChild(mainCanvas.create().canvas);
     frame0Container.appendChild(mainCanvas.convertToImg('200px'));
-    preview.getParent().appendChild(mainCanvas.convertToImg('200px'));
 
     toolsList.forEach(element => {
       element.addEventListener('click', () => tools.active(element, '.tool'));
@@ -38,9 +37,11 @@ export default class App {
 
     addButton.addEventListener('click', frames.addFrame);
 
-    mainCanvas.getCanvas().canvas.addEventListener('mouseup', frames.render);
+    mainCanvas.getCanvas().canvas.addEventListener('mouseup', () => {
+      frames.render();
+    });
     mainCanvas.getCanvas().canvas.addEventListener('mouseout', frames.render);
 
-    preview.getChild();
+    preview.startAnimation(0);
   }
 }

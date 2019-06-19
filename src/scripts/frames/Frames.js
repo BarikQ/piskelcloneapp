@@ -8,14 +8,17 @@ export default class Frames {
   render() {
     const framesContainer = document.querySelectorAll('.frame');
     let activeFrame = null;
-    framesContainer.forEach(elem => {
-      if (elem.classList.contains('active')) activeFrame = elem;
+    let number = 0;
+    framesContainer.forEach((elem, index) => {
+      if (elem.classList.contains('active')) {
+        activeFrame = elem;
+        number = index;
+      }
     });
 
-    activeFrame.replaceChild(
-      mainCanvas.convertToImg('104px'),
-      activeFrame.querySelector('.imgFrame')
-    );
+    const currentImg = mainCanvas.convertToImg('104px');
+    currentImg.id = `frame_img_${number}`;
+    activeFrame.replaceChild(currentImg, activeFrame.querySelector('.imgFrame'));
   }
 
   addFrame() {
