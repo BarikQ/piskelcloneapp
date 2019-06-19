@@ -233,3 +233,9 @@ canvas {
   image-rendering: pixelated;
   image-rendering: crisp-edges;
 }
+
+.preview {
+  height: 200px;
+  width: 200px;
+  background-size: contain;
+}
