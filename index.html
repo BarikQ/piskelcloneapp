@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="./bootstrap/bootstrap.css" />
+    <link rel="stylesheet" href="./src/styles/style.css" />
+    <title>Piskel Clone</title>
+  </head>
+  <body class="bg-dark">
+    <nav class="navbar sticky-top navbar-dark bg-dark" id="navbar">
+      <a class="navbar-brand" href="#">Piskel Clone</a>
+
+      <span class="sprite_name navbar-text" id="spriteName">
+        New Sprite
+      </span>
+
+      <div class="nav_btn_container">
+        <button class="create_sprite" id="create_sprite">
+          Create Sprite
+        </button>
+        <button class="sign_in" id="sign_in">Sign In</button>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <!--  -->
+
+        <div class="col-1 tools-wrapper" id="tools-wrapper">
+          <ul class="tools-list" id="tools-list">
+            <li class="tool pen active" id="pen_tool"></li>
+            <li class="tool bucket" id="bucket_tool"></li>
+            <li class="tool stroke" id="stroke_tool"></li>
+            <li class="tool rectangle" id="rectangle_tool"></li>
+            <li class="tool circle" id="circle_tool"></li>
+            <li class="tool move" id="move_tool"></li>
+            <li class="tool shape" id="shape_tool"></li>
+            <li class="tool dithering" id="dithering_tool"></li>
+            <li class="color_main color" id="color_tool color_main">
+              <input
+                type="color"
+                id="main"
+                name="Color"
+                value="#000000"
+                height="40px"
+                width="100px"
+              />
+              <label for="main">Main</label>
+            </li>
+            <li class="color_secondary color" id="color_tool color_secondary">
+              <input
+                type="color"
+                id="secondary"
+                name="Color"
+                value="#ffffff"
+                height="40px"
+                width="100px"
+              />
+              <label for="secondary">Secondary</label>
+            </li>
+          </ul>
+        </div>
+
+        <div class="col-11 column-wrapper" id="column-wrapper">
+          <!--  -->
+
+          <div class="left-column">
+            <ul class="list-group" id="frames-list">
+              <li class="list-group-item frame active" id="frame_0"></li>
+              <button class="add-btn" id="add-btn">
+                Add new
+                <br />frame
+              </button>
+            </ul>
+          </div>
+
+          <div class="main-column">
+            <div class="canvas-main-container"></div>
+          </div>
+
+          <div class="right-column">
+            <div class="preview-wrapper">
+              <div class="preview" id="preview"></div>
+              <div class="frame_rate-wrapper" id="frame_rate-wrapper">
+                <input type="range" class="frame_rate" id="frame_rate" min="0" max="24" step="1" />
+                <p class="fps_value" id="fps_value">12</p>
+              </div>
+            </div>
+            <div class="layers-wrapper"></div>
+            <div class="info-wrapper">
+              <ul>
+                <li class="cursor_cords" id="cursor_cords">0x0</li>
+                <li class="layer_size" id="layer_size">32x32</li>
+              </ul>
+            </div>
+          </div>
+
+          <!--  -->
+        </div>
+
+        <!--  -->
+      </div>
+    </div>
+
+    <footer>
+      <div class="settings-wrapper" id="settings-wrapper">
+        <ul class="settings list-group" id="settings">
+          <li id="export list-group-item"></li>
+          <li id="save list-group-item"></li>
+        </ul>
+      </div>
+    </footer>
+
+    <script src="./dist/app.bundle.js"></script>
+  </body>
+</html>
