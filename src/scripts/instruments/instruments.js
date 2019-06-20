@@ -24,8 +24,8 @@ export default class Intruments {
       top: canvas.getBoundingClientRect().top
     };
     const coords = {};
-    coords.x = e.pageX - canvBox.left;
-    coords.y = e.pageY - canvBox.top;
+    coords.x = e.clientX - canvBox.left;
+    coords.y = e.clientY - canvBox.top;
     return coords;
   }
 
@@ -34,6 +34,7 @@ export default class Intruments {
     const selectSize = document.querySelector('#sizes_canvas');
     const coordsWrapper = document.querySelector('#cursor_coords');
     const canvas = [mainCanvas.getCanvas().canvas][0];
+    let coords = null;
 
     let divider = canvas.width / size;
     const sizeWrapper = document.querySelector('#layer_size');
@@ -45,7 +46,7 @@ export default class Intruments {
     });
 
     mainCanvas.getCanvas().canvas.addEventListener('mousemove', e => {
-      const coords = this.getCursorCoords(e);
+      coords = this.getCursorCoords(e);
       coords.x = Math.floor(coords.x / divider);
       coords.y = Math.floor(coords.y / divider);
       if (coords.x + 1 > size) {
@@ -64,5 +65,6 @@ export default class Intruments {
     // });
 
     // return rng.value;
+    return coords;
   }
 }

@@ -23,6 +23,7 @@ export default class Pen {
       const penSize = instrument.getPenSize();
       x1 = instrument.getCursorCoords(e).x;
       y1 = instrument.getCursorCoords(e).y;
+      console.log(instrument.showCanvasInfo);
 
       const divider = canvas.width / pixelsNumber;
       const dx = Math.abs(x1 - x0);

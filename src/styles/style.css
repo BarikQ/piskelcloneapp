@@ -55,10 +55,6 @@ button:hover {
   justify-content: center;
 }
 
-.mainCanvas {
-  border: 5px solid #252525;
-}
-
 .list-group {
   width: 120px;
   overflow: overlay;
@@ -243,4 +239,9 @@ canvas {
 .size_select,
 .size_pen {
   color: white;
+}
+
+.mainCanvas {
+  margin-top: 15px;
+  box-shadow: 0px 0px 15px 2px red;
 }
