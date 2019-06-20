@@ -1,17 +1,16 @@
 import Canvas from '../../Canvas/Canvas';
 import Color from '../Color/Color';
+import Instruments from '../../instruments/instruments';
 
 const mainCanvas = new Canvas(800, 800, 'mainCanvas', 'mainCanvas');
 const colors = new Color('main');
+const instrument = new Instruments();
 
 export default class Pen {
   draw() {
     const canvas = [mainCanvas.getCanvas().canvas][0];
     const ctx = [mainCanvas.getCanvas().ctx][0];
-    const canvBox = {
-      left: canvas.getBoundingClientRect().left,
-      top: canvas.getBoundingClientRect().top
-    };
+
     let x0 = null;
     let y0 = null;
     let x1 = null;
@@ -20,9 +19,12 @@ export default class Pen {
     let coordY = null;
 
     function draw(e) {
-      x1 = e.pageX - canvBox.left;
-      y1 = e.pageY - canvBox.top;
+      const pixelsNumber = instrument.getCanvasSize();
+      const penSize = instrument.getPenSize();
+      x1 = instrument.getCursorCoords(e).x;
+      y1 = instrument.getCursorCoords(e).y;
 
+      const divider = canvas.width / pixelsNumber;
       const dx = Math.abs(x1 - x0);
       const dy = Math.abs(y1 - y0);
       const sx = x0 < x1 ? 1 : -1;
@@ -30,9 +32,14 @@ export default class Pen {
       let err = dx - dy;
 
       while (true) {
-        coordX = Math.floor(x0 / 25);
-        coordY = Math.floor(y0 / 25);
-        ctx.fillRect(coordX * 25, coordY * 25, 25, 25);
+        coordX = Math.floor(x0 / divider / penSize);
+        coordY = Math.floor(y0 / divider / penSize);
+        ctx.fillRect(
+          coordX * divider * penSize,
+          coordY * divider * penSize,
+          divider * penSize,
+          divider * penSize
+        );
 
         if (x0 === x1 && y0 === y1) break;
         const err2 = 2 * err;
@@ -52,8 +59,8 @@ export default class Pen {
     function startDrawing(e) {
       ctx.beginPath();
       ctx.fillStyle = colors.primaryColor;
-      x0 = e.pageX - canvBox.left;
-      y0 = e.pageY - canvBox.top;
+      x0 = instrument.getCursorCoords(e).x;
+      y0 = instrument.getCursorCoords(e).y;
       ctx.moveTo(x0, y0);
       canvas.addEventListener('mousemove', draw);
       canvas.addEventListener('click', draw);

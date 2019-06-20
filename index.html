@@ -60,6 +60,23 @@
               />
               <label for="secondary">Secondary</label>
             </li>
+            <li class="size_select" id="size_tool">
+              <label for="sizes">Canvas Sizes</label><br />
+              <select name="sizes" id="sizes_canvas">
+                <option value="32" id="size">32</option>
+                <option value="64" id="size">64</option>
+                <option value="128" id="size">128</option>
+              </select>
+            </li>
+            <li class="size_pen" id="size_tool">
+              <label for="sizes">Pen Sizes</label><br />
+              <select name="sizes" id="sizes_pen">
+                <option value="1" id="size">1</option>
+                <option value="2" id="size">2</option>
+                <option value="3" id="size">3</option>
+                <option value="4">4</option>
+              </select>
+            </li>
           </ul>
         </div>
 
@@ -91,7 +108,7 @@
             <div class="layers-wrapper"></div>
             <div class="info-wrapper">
               <ul>
-                <li class="cursor_cords" id="cursor_cords">0x0</li>
+                <li class="cursor_cords" id="cursor_coords">0x0</li>
                 <li class="layer_size" id="layer_size">32x32</li>
               </ul>
             </div>

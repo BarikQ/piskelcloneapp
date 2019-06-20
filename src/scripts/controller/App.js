@@ -1,6 +1,7 @@
 import Canvas from '../Canvas';
 import Tools from '../tools/Tools';
 import Frames from '../frames/Frames';
+import Instruments from '../instruments/instruments';
 import Preview from '../preview/Preview';
 
 export default class App {
@@ -13,6 +14,7 @@ export default class App {
     const tools = new Tools();
     const frames = new Frames();
     const preview = new Preview();
+    const instrument = new Instruments();
 
     const canvasContainer = document.querySelector('.canvas-main-container');
     const frame0Container = document.querySelector('#frame_0');
@@ -42,6 +44,7 @@ export default class App {
     });
     mainCanvas.getCanvas().canvas.addEventListener('mouseout', frames.render);
 
+    instrument.showCanvasInfo();
     preview.startAnimation(0);
   }
 }

@@ -239,3 +239,8 @@ canvas {
   width: 200px;
   background-size: contain;
 }
+
+.size_select,
+.size_pen {
+  color: white;
+}
