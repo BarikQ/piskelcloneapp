@@ -49,11 +49,8 @@ export default class Intruments {
       coords = this.getCursorCoords(e);
       coords.x = Math.floor(coords.x / divider);
       coords.y = Math.floor(coords.y / divider);
-      if (coords.x + 1 > size) {
-        coords.x -= coords.x + 1 - size;
-      } else if (coords.x + 1 < 1) coords.x += 1;
-      if (coords.y + 1 > size) coords.y -= coords.y + 1 - size;
-      else if (coords.y + 1 < 1) coords.y += 1;
+      if (coords.x + 1 < 1) coords.x += 1;
+
       coordsWrapper.innerHTML = `${coords.x + 1} : ${coords.y + 1}`;
     });
 
