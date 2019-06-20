@@ -257,4 +257,14 @@ canvas {
   color: white;
   cursor: pointer;
   z-index: 100;
+  border: 2px solid burlywood;
+  border-radius: 10px;
+  width: 35px;
+  text-align: center;
+  margin-top: 5px;
+}
+
+.full:hover {
+  cursor: pointer;
+  transform: scale(1.05);
 }

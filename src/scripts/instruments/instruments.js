@@ -70,9 +70,9 @@ export default class Intruments {
     gifshot.createGIF(
       {
         images: [
-          { src: '../../../img/2.png', text: '1' },
-          { src: '../../img/pelmen.png', text: '2' },
-          { src: '../../img/32.jpg', text: '3' }
+          { src: '../img/2.png', text: '1' },
+          { src: '../img/pelmen.png', text: '2' },
+          { src: '../img/32.jpg', text: '3' }
         ],
         interval: 1
       },
