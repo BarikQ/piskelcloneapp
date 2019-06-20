@@ -1,4 +1,5 @@
 import Canvas from '../Canvas/Canvas';
+import gifshot from '../gifshot';
 
 const mainCanvas = new Canvas(800, 800, 'mainCanvas', 'mainCanvas');
 
@@ -54,14 +55,35 @@ export default class Intruments {
       coordsWrapper.innerHTML = `${coords.x + 1} : ${coords.y + 1}`;
     });
 
-    // const rng = document.querySelector('#frame_rate');
-
-    // rng.addEventListener('input', () => {
-    //   const rngValue = document.querySelector('#fps_value');
-    //   rngValue.innerHTML = rng.value;
-    // });
-
-    // return rng.value;
     return coords;
+  }
+
+  fullScreen(container) {
+    if (container.fullscreenElement) {
+      container.exitFullscreen();
+    } else {
+      container.requestFullscreen();
+    }
+  }
+
+  downloadGif() {
+    gifshot.createGIF(
+      {
+        images: [
+          { src: '../../../img/2.png', text: '1' },
+          { src: '../../img/pelmen.png', text: '2' },
+          { src: '../../img/32.jpg', text: '3' }
+        ],
+        interval: 1
+      },
+      function aaa(obj) {
+        if (!obj.error) {
+          const image = [obj.image][0];
+          const animatedImage = document.createElement('img');
+          animatedImage.src = image;
+          document.body.appendChild(animatedImage);
+        }
+      }
+    );
   }
 }

@@ -234,6 +234,13 @@ canvas {
   height: 200px;
   width: 200px;
   background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: transparent;
+}
+
+.preview:fullscreen {
+  background-color: #343a40;
 }
 
 .size_select,
@@ -244,4 +251,10 @@ canvas {
 .mainCanvas {
   margin-top: 15px;
   box-shadow: 0px 0px 15px 2px red;
+}
+
+.full {
+  color: white;
+  cursor: pointer;
+  z-index: 100;
 }

@@ -20,6 +20,7 @@ export default class App {
     const frame0Container = document.querySelector('#frame_0');
     const addButton = document.querySelector('#add-btn');
     const toolsList = document.querySelectorAll('.tool');
+    const fullScr = document.querySelector('#fullScreen');
 
     preview.showRate();
 
@@ -44,6 +45,9 @@ export default class App {
     });
     mainCanvas.getCanvas().canvas.addEventListener('mouseout', frames.render);
 
+    fullScr.addEventListener('click', () => instrument.fullScreen(preview.getParent()));
+
+    instrument.downloadGif();
     instrument.showCanvasInfo();
     preview.startAnimation(0);
   }

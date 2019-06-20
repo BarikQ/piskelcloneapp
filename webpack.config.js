@@ -10,7 +10,6 @@ module.exports = {
   devtool: 'source-map',
   module: {
     rules: [
-      { enforce: 'pre', test: /\.js$/, loader: 'eslint-loader' },
       {
         test: /\.js$/,
         exclude: /(node_modules)/,
