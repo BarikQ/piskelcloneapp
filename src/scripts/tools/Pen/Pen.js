@@ -23,7 +23,6 @@ export default class Pen {
       const penSize = instrument.getPenSize();
       x1 = instrument.getCursorCoords(e).x;
       y1 = instrument.getCursorCoords(e).y;
-      console.log(instrument.showCanvasInfo);
 
       const divider = canvas.width / pixelsNumber;
       const dx = Math.abs(x1 - x0);
@@ -35,7 +34,12 @@ export default class Pen {
       while (true) {
         coordX = Math.floor(x0 / divider);
         coordY = Math.floor(y0 / divider);
-        ctx.fillRect(coordX * divider, coordY * divider, divider * penSize, divider * penSize);
+        ctx.fillRect(
+          coordX * divider + Math.floor(penSize / 2),
+          coordY * divider + Math.floor(penSize / 2),
+          divider * penSize,
+          divider * penSize
+        );
 
         if (x0 === x1 && y0 === y1) break;
         const err2 = 2 * err;

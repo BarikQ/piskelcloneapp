@@ -21,6 +21,8 @@ export default class App {
     const addButton = document.querySelector('#add-btn');
     const toolsList = document.querySelectorAll('.tool');
     const fullScr = document.querySelector('#fullScreen');
+    const copyButton = document.querySelector('#copyButton');
+    const deleteButton = document.querySelector('#deleteButton');
 
     preview.showRate();
 
@@ -38,7 +40,9 @@ export default class App {
     toolsList[1].addEventListener('click', tools.BucketTool);
     toolsList[2].addEventListener('click', tools.StrokeTool);
 
-    addButton.addEventListener('click', frames.addFrame);
+    addButton.addEventListener('click', () => frames.addFrame());
+    copyButton.addEventListener('click', event => frames.copyFrame(event), true);
+    deleteButton.addEventListener('click', event => frames.deleteFrame(event), true);
 
     mainCanvas.getCanvas().canvas.addEventListener('mouseup', () => {
       frames.render();

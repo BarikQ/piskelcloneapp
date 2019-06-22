@@ -85,7 +85,10 @@
 
           <div class="left-column">
             <ul class="list-group" id="frames-list">
-              <li class="list-group-item frame active" id="frame_0"></li>
+              <li class="list-group-item frame active" id="frame_0">
+                <button class="copyBtn framesButtons" id="copyButton"></button>
+                <button class="deleteBtn framesButtons" id="deleteButton"></button>
+              </li>
               <button class="add-btn" id="add-btn">
                 Add new
                 <br />frame
@@ -100,7 +103,7 @@
           <div class="right-column">
             <div class="preview-wrapper">
               <div class="preview" id="preview">
-                <div id="fullScreen" class="full">FS</div>
+                <div id="fullScreen" class="full"></div>
               </div>
               <div class="frame_rate-wrapper" id="frame_rate-wrapper">
                 <input type="range" class="frame_rate" id="frame_rate" min="0" max="24" step="1" />
@@ -124,6 +127,7 @@
     </div>
 
     <footer>
+      <div class="author">Created by BarikQ</div>
       <div class="settings-wrapper" id="settings-wrapper">
         <ul class="settings list-group" id="settings">
           <li id="export list-group-item"></li>
