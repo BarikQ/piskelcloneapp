@@ -14,7 +14,7 @@ export default class App {
     const tools = new Tools();
     const frames = new Frames();
     const preview = new Preview();
-    const instrument = new Instruments();
+    const instruments = new Instruments();
 
     const canvasContainer = document.querySelector('.canvas-main-container');
     const frame0Container = document.querySelector('#frame_0');
@@ -30,11 +30,14 @@ export default class App {
     frame0Container.appendChild(mainCanvas.convertToImg('200px'));
 
     toolsList.forEach(element => {
-      element.addEventListener('click', () => tools.active(element, '.tool'));
+      element.addEventListener('click', () => instruments.active(element, '.tool'));
     });
 
-    frame0Container.addEventListener('click', () => tools.active(frame0Container, '.frame'));
+    frame0Container.addEventListener('click', () => instruments.active(frame0Container, '.frame'));
     frame0Container.addEventListener('click', () => mainCanvas.refresh());
+    frame0Container.addEventListener('dragstart', () => frames.dragAndDrop(frame0Container));
+
+    frames.dragAndDrop(frame0Container);
 
     toolsList[0].addEventListener('click', tools.PenTool);
     toolsList[1].addEventListener('click', tools.BucketTool);
@@ -49,10 +52,10 @@ export default class App {
     });
     mainCanvas.getCanvas().canvas.addEventListener('mouseout', frames.render);
 
-    fullScr.addEventListener('click', () => instrument.fullScreen(preview.getParent()));
+    fullScr.addEventListener('click', () => instruments.fullScreen(preview.getParent()));
 
-    instrument.downloadGif();
-    instrument.showCanvasInfo();
+    instruments.downloadGif();
+    instruments.showCanvasInfo();
     preview.startAnimation(0);
   }
 }

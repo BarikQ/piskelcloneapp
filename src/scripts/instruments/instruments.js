@@ -86,4 +86,27 @@ export default class Intruments {
       }
     );
   }
+
+  renumberFrames() {
+    const framesList = document.querySelectorAll('.frame');
+    const framesImagesList = document.querySelectorAll('.imgFrame');
+    framesList.forEach((elem, index) => {
+      elem.id = `frame_${index}`;
+      framesImagesList[index].id = `frame_img_${index}`;
+    });
+  }
+
+  setFramesIventListeners(frame) {
+    frame.addEventListener('click', () => mainCanvas.refresh());
+    frame.addEventListener('click', () => this.active(frame, '.frame'));
+  }
+
+  active(elem, target) {
+    const items = document.querySelectorAll(target);
+    items.forEach(element => {
+      if (element.classList.contains('active')) element.classList.remove('active');
+    });
+
+    elem.classList.add('active');
+  }
 }

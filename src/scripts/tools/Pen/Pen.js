@@ -34,12 +34,7 @@ export default class Pen {
       while (true) {
         coordX = Math.floor(x0 / divider);
         coordY = Math.floor(y0 / divider);
-        ctx.fillRect(
-          coordX * divider + Math.floor(penSize / 2),
-          coordY * divider + Math.floor(penSize / 2),
-          divider * penSize,
-          divider * penSize
-        );
+        ctx.fillRect(coordX * divider, coordY * divider, divider * penSize, divider * penSize);
 
         if (x0 === x1 && y0 === y1) break;
         const err2 = 2 * err;

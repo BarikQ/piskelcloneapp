@@ -293,9 +293,20 @@ canvas {
   right: 0;
 }
 
-
 .deleteBtn {
   background-image: url('../../img/icons.png');
   background-position: -274px -106px;
   right: 0;
+}
+
+.imgFrame {
+  display: none;
+}
+
+.frame {
+  background-size: contain;
+}
+
+.over {
+  border: 3px dashed gold;
 }

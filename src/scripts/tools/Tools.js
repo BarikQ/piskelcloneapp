@@ -24,13 +24,4 @@ export default class Tools {
 
     StrokeTool.render();
   }
-
-  active(elem, target) {
-    const items = document.querySelectorAll(target);
-    items.forEach(element => {
-      if (element.classList.contains('active')) element.classList.remove('active');
-    });
-
-    elem.classList.add('active');
-  }
 }
