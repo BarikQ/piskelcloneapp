@@ -310,3 +310,15 @@ canvas {
 .over {
   border: 3px dashed gold;
 }
+
+.saveButton,
+.clearButton,
+.renderButton {
+  font-size: 15px;
+  border: 3px solid gold;
+  background: none;
+  color: white;
+  border-radius: 6px;
+  padding: 5px;
+  margin: 5px;
+}

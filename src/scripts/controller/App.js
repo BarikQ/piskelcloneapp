@@ -3,6 +3,7 @@ import Tools from '../tools/Tools';
 import Frames from '../frames/Frames';
 import Instruments from '../instruments/instruments';
 import Preview from '../preview/Preview';
+import LocaleStorageClass from '../localeStorage/localeStorage';
 
 export default class App {
   constructor() {
@@ -15,6 +16,7 @@ export default class App {
     const frames = new Frames();
     const preview = new Preview();
     const instruments = new Instruments();
+    const localStorageClass = new LocaleStorageClass();
 
     const canvasContainer = document.querySelector('.canvas-main-container');
     const frame0Container = document.querySelector('#frame_0');
@@ -23,6 +25,9 @@ export default class App {
     const fullScr = document.querySelector('#fullScreen');
     const copyButton = document.querySelector('#copyButton');
     const deleteButton = document.querySelector('#deleteButton');
+    const saveDataButton = document.querySelector('#saveButton');
+    const clearDataButton = document.querySelector('#clearButton');
+    const renderDataButton = document.querySelector('#renderButton');
 
     preview.showRate();
 
@@ -46,6 +51,9 @@ export default class App {
     addButton.addEventListener('click', () => frames.addFrame());
     copyButton.addEventListener('click', event => frames.copyFrame(event), true);
     deleteButton.addEventListener('click', event => frames.deleteFrame(event), true);
+    saveDataButton.addEventListener('click', localStorageClass.save);
+    clearDataButton.addEventListener('click', localStorageClass.clearStorage);
+    renderDataButton.addEventListener('click', localStorageClass.render);
 
     mainCanvas.getCanvas().canvas.addEventListener('mouseup', () => {
       frames.render();

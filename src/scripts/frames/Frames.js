@@ -186,4 +186,8 @@ export default class Frames {
       elem.classList.remove('swapped');
     });
   }
+
+  getFrames() {
+    return document.querySelectorAll('.frame');
+  }
 }
