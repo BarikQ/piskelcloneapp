@@ -54,27 +54,27 @@
                 type="color"
                 id="secondary"
                 name="Color"
-                value="#ffffff"
+                value="#663399"
                 height="40px"
                 width="100px"
               />
               <label for="secondary">Secondary</label>
             </li>
             <li class="size_select" id="size_tool">
-              <label for="sizes">Canvas Sizes</label><br />
+              <label for="sizes">Canvas Sizes</label>
               <select name="sizes" id="sizes_canvas">
-                <option value="32" id="size">32</option>
-                <option value="64" id="size">64</option>
-                <option value="128" id="size">128</option>
+                <option class="option" value="32" id="size">32</option>
+                <option class="option" value="64" id="size">64</option>
+                <option class="option" value="128" id="size">128</option>
               </select>
             </li>
             <li class="size_pen" id="size_tool">
-              <label for="sizes">Pen Sizes</label><br />
+              <label for="sizes">Pen Sizes</label>
               <select name="sizes" id="sizes_pen">
-                <option value="1" id="size">1</option>
-                <option value="2" id="size">2</option>
-                <option value="3" id="size">3</option>
-                <option value="4">4</option>
+                <option class="option" value="1" id="size">1</option>
+                <option class="option" value="2" id="size">2</option>
+                <option class="option" value="3" id="size">3</option>
+                <option class="option" value="4" id="size">4</option>
               </select>
             </li>
           </ul>
@@ -121,6 +121,7 @@
               <button class="renderButton" id="renderButton">Render Your Data</button>
               <button class="saveButton" id="saveButton">Save Your Data</button>
               <button class="clearButton" id="clearButton">Clear All Data</button>
+              <button class="downloadButton" id="downloadButton">Download Gif</button>
             </div>
           </div>
 
@@ -132,12 +133,8 @@
     </div>
 
     <footer>
-      <div class="author">Created by BarikQ</div>
-      <div class="settings-wrapper" id="settings-wrapper">
-        <ul class="settings list-group" id="settings">
-          <li id="export list-group-item"></li>
-          <li id="save list-group-item"></li>
-        </ul>
+      <div class="author">
+        <h2>Created by <a href="https://github.com/BarikQ" target="_blank">BarikQ</a></h2>
       </div>
     </footer>
 

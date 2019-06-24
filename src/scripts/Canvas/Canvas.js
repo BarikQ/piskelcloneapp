@@ -14,7 +14,8 @@ export default class Canvas {
     canvas.height = this.height;
     canvas.className = this.classT;
     canvas.id = this.idT;
-    ctx.rect(0, 0, this.height, this.width);
+    ctx.fillStyle = '#343a40';
+    ctx.fillRect(0, 0, this.height, this.width);
     const obj = {};
     obj.canvas = canvas;
     obj.ctx = ctx;
@@ -39,7 +40,8 @@ export default class Canvas {
   }
 
   clearCanvas() {
-    this.getCanvas().ctx.clearRect(0, 0, this.width, this.height);
+    this.getCanvas().ctx.fillStyle = '#343a40';
+    this.getCanvas().ctx.fillRect(0, 0, this.height, this.width);
   }
 
   convertToImg(size) {

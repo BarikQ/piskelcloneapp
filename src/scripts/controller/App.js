@@ -28,6 +28,7 @@ export default class App {
     const saveDataButton = document.querySelector('#saveButton');
     const clearDataButton = document.querySelector('#clearButton');
     const renderDataButton = document.querySelector('#renderButton');
+    const downloadButton = document.querySelector('#downloadButton');
 
     preview.showRate();
 
@@ -62,8 +63,9 @@ export default class App {
 
     fullScr.addEventListener('click', () => instruments.fullScreen(preview.getParent()));
 
-    instruments.downloadGif();
     instruments.showCanvasInfo();
     preview.startAnimation(0);
+
+    downloadButton.addEventListener('click', instruments.downloadGif);
   }
 }

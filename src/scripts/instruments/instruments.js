@@ -67,21 +67,42 @@ export default class Intruments {
   }
 
   downloadGif() {
+    const framesImages = document.querySelectorAll('.imgFrame');
+    const rng = document.querySelector('#frame_rate');
+    const framesImagesUrls = [];
+    const imagesObject = [];
+
+    rng.value = parseInt(rng.value, 10);
+
+    if (rng.value === 0) return;
+
+    const fpsValue = 1 / rng.value;
+
+    framesImages.forEach((elem, index) => {
+      framesImagesUrls[index] = elem.src;
+      imagesObject[index] = { src: framesImagesUrls[index], text: '' };
+    });
+
     gifshot.createGIF(
       {
-        images: [
-          { src: '../img/2.png', text: '1' },
-          { src: '../img/pelmen.png', text: '2' },
-          { src: '../img/32.jpg', text: '3' }
-        ],
-        interval: 1
+        images: imagesObject,
+        interval: fpsValue,
+        frameDuration: fpsValue
       },
-      function aaa(obj) {
+      function gifFunc(obj) {
         if (!obj.error) {
           const image = [obj.image][0];
           const animatedImage = document.createElement('img');
           animatedImage.src = image;
-          document.body.appendChild(animatedImage);
+
+          const saveLink = document.createElement('a');
+          saveLink.onclick = () => {
+            saveLink.href = animatedImage.src;
+            saveLink.target = '_blank';
+            saveLink.download = 'New Sprite.gif';
+          };
+
+          saveLink.click();
         }
       }
     );

@@ -10,8 +10,6 @@ export default class localStorageClass {
   save() {
     const framesData = document.querySelector('#frames-list');
     localStorage.setItem('frames', framesData.outerHTML);
-    console.log(framesData.outerHTML);
-    console.log(localStorage.getItem('frames'));
   }
 
   render() {

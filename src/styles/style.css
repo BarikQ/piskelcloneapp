@@ -9,27 +9,18 @@ li {
 
 button {
   cursor: pointer;
+  border: none;
+  background: none;
 }
 
 button:hover {
   transition: 0.2s ease all;
   transform: scale(1.05);
+  cursor: pointer;
 }
 
 .navbar {
   justify-content: space-around;
-}
-
-.nav_btn_container>button {
-  cursor: pointer;
-  border: none;
-  background: none;
-  border: 2px solid black;
-  border-radius: 10rem;
-  background: gold;
-  font-weight: 600;
-  height: 40px;
-  width: 120px;
 }
 
 .navbar>button:hover {
@@ -55,9 +46,11 @@ button:hover {
   justify-content: center;
 }
 
-.list-group {
+.left-column>.list-group {
   width: 120px;
   overflow: overlay;
+  display: block;
+  padding: 5px;
 }
 
 .list-group-item.active {
@@ -99,24 +92,13 @@ button:hover {
   margin-top: 10px;
 }
 
-.add-btn {
-  border: none;
-  background: none;
-  border: 3px solid grey;
-  width: 96px;
-  height: 60px;
-  padding-left: 5px;
-  font-weight: 600;
-  text-align: left;
-  border-radius: 5px;
-  color: white;
-  margin: 5px auto;
-}
 
 .tools-list {
   display: grid;
   grid-template: 1fr / 1fr;
   grid-gap: 10px;
+  padding: 5px;
+  justify-items: center;
 }
 
 .tool {
@@ -127,8 +109,6 @@ button:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  /* font-size: 35px;
-  color: white; */
   cursor: pointer;
   background-image: url(./../../img/icons.png);
 }
@@ -171,7 +151,8 @@ button:hover {
 }
 
 .active {
-  border: 3px solid gold !important;
+  border: 3px solid rebeccapurple !important;
+  box-shadow: 0 0 5px 1px maroon;
 }
 
 
@@ -187,7 +168,9 @@ button:hover {
 }
 
 .info-wrapper {
-  color: white;
+  font-weight: 200;
+  color: #01a661;
+  text-shadow: 0 0 10px;
 }
 
 .frame_rate {
@@ -196,7 +179,19 @@ button:hover {
 }
 
 .color {
+  font-weight: 600;
   color: white;
+  text-shadow: 0 0 10px;
+  displaY: flex;
+  align-items: baseline;
+  width: 100%;
+  height: 100%;
+}
+
+.color>label {
+  position: relative;
+  top: -5px;
+  left: 10px;
 }
 
 .color>input {
@@ -208,6 +203,9 @@ input[type="color"] {
   border: none;
   width: 32px;
   height: 32px;
+  box-shadow: 0 0 15px 0px red;
+  border: 5px solid rebeccapurple;
+  border-radius: 50%;
 }
 
 input[type="color"]::-webkit-color-swatch-wrapper {
@@ -216,11 +214,13 @@ input[type="color"]::-webkit-color-swatch-wrapper {
 
 input[type="color"]::-webkit-color-swatch {
   border: none;
+  border-radius: 50%;
 }
 
 .fps_value {
-  color: white;
-  font-weight: 600;
+  font-weight: 200;
+  color: #01a661;
+  text-shadow: 0 0 10px;
   text-align: center;
 }
 
@@ -246,7 +246,12 @@ canvas {
 
 .size_select,
 .size_pen {
+  font-weight: 600;
   color: white;
+  text-shadow: 0 0 10px;
+  displaY: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 .mainCanvas {
@@ -255,7 +260,9 @@ canvas {
 }
 
 .full {
-  color: white;
+  font-weight: 200;
+  color: #01a661;
+  text-shadow: 0 0 10px;
   cursor: pointer;
   z-index: 100;
   width: 35px;
@@ -269,12 +276,6 @@ canvas {
 .full:hover {
   cursor: pointer;
   transform: scale(1.05);
-}
-
-.author {
-  color: white;
-  text-align: center;
-  font-size: 18px;
 }
 
 .framesButtons {
@@ -311,14 +312,77 @@ canvas {
   border: 3px dashed gold;
 }
 
+
+.settings-wrapper {
+  display: flex;
+}
+
 .saveButton,
 .clearButton,
-.renderButton {
-  font-size: 15px;
-  border: 3px solid gold;
+.renderButton,
+.downloadButton,
+.nav_btn_container>button,
+.add-btn {
+  border: 3px solid rebeccapurple;
+  border-radius: 10rem;
+  padding: 10px;
   background: none;
-  color: white;
-  border-radius: 6px;
-  padding: 5px;
-  margin: 5px;
+  color: #01a661;
+  box-shadow: 0 0 10px 3px rebeccapurple;
+  text-shadow: 0 0 10px;
+  width: 160px;
+}
+
+.author {
+  display: flex;
+  justify-content: center;
+}
+
+.author>h2 {
+  text-shadow: 0px 0px 15px rebeccapurple;
+  font-weight: 200;
+  color: red;
+  transition: 0.2s ease all;
+}
+
+.author>h2>a {
+  color: red;
+}
+
+.author>h2:hover {
+  transition: 0.2s ease all;
+  transform: scale(1.05);
+}
+
+.author>h2:hover>a {
+  text-shadow: 0px 0px 15px white;
+  text-decoration: none;
+}
+
+.localStorageButtons>button {
+  margin: 5px 0;
+}
+
+.add-btn {
+  padding: 0;
+  width: 96px;
+  height: 60px;
+  padding-left: 5px;
+  font-weight: 600;
+  text-align: left;
+  border-radius: 5px;
+  margin: 5px auto;
+  display: flex;
+}
+
+select {
+  border: none;
+  background: none;
+  font-weight: 200;
+  color: #01a661;
+  text-shadow: 0 0 10px;
+}
+
+.option {
+  background: #343a40;
 }
