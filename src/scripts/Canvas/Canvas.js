@@ -31,8 +31,8 @@ export default class Canvas {
     return obj;
   }
 
-  cloneCanvas(childCanvas, width, height) {
-    const newCtx = childCanvas.getContext('2d');
+  cloneCanvas(parentCanvas, width, height) {
+    const newCtx = parentCanvas.getContext('2d');
     newCtx.clearRect(0, 0, width, height);
     newCtx.drawImage(this.getCanvas().canvas, 0, 0, width, height);
 

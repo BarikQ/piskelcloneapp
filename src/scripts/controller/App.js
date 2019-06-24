@@ -45,9 +45,7 @@ export default class App {
 
     frames.dragAndDrop(frame0Container);
 
-    toolsList[0].addEventListener('click', tools.PenTool);
-    toolsList[1].addEventListener('click', tools.BucketTool);
-    toolsList[2].addEventListener('click', tools.StrokeTool);
+    tools.addEventListeners();
 
     addButton.addEventListener('click', () => frames.addFrame());
     copyButton.addEventListener('click', event => frames.copyFrame(event), true);

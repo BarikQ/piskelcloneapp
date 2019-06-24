@@ -12,4 +12,9 @@ export default class Color {
     const color = document.querySelector('#secondary');
     return color.value;
   }
+
+  get backgroundColor() {
+    const color = '#343a40';
+    return color;
+  }
 }

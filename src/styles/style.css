@@ -121,6 +121,10 @@ button:hover {
   background-position: -228px -92px;
 }
 
+.eraser {
+  background-position: -46px -228px;
+}
+
 .stroke {
   background-position: -46px -136px;
 }
@@ -206,15 +210,18 @@ input[type="color"] {
   box-shadow: 0 0 15px 0px red;
   border: 5px solid rebeccapurple;
   border-radius: 50%;
+  cursor: pointer;
 }
 
 input[type="color"]::-webkit-color-swatch-wrapper {
   padding: 0;
+  cursor: pointer;
 }
 
 input[type="color"]::-webkit-color-swatch {
   border: none;
   border-radius: 50%;
+  cursor: pointer;
 }
 
 .fps_value {
@@ -381,8 +388,18 @@ select {
   font-weight: 200;
   color: #01a661;
   text-shadow: 0 0 10px;
+  cursor: pointer;
+}
+
+select:focus {
+  outline: none;
 }
 
 .option {
   background: #343a40;
+  cursor: pointer;
+}
+
+.option:hover {
+  cursor: pointer;
 }
