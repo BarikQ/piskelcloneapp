@@ -95,7 +95,7 @@ button:hover {
 .tools-list {
   display: grid;
   grid-template: 1fr / 1fr;
-  grid-gap: 10px;
+  grid-gap: 8px;
   padding: 5px;
   justify-items: center;
 }
