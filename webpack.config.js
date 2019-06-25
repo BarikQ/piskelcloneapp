@@ -1,5 +1,4 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: './src/scripts/index.js',
@@ -22,13 +21,5 @@ module.exports = {
         use: ['style-loader', 'css-loader']
       }
     ]
-  },
-  plugins: [
-    new HtmlWebpackPlugin({
-      meta: {
-        viewport: 'width=device-width, initial-scale=1'
-      },
-      title: 'Piskel App'
-    })
-  ]
+  }
 };

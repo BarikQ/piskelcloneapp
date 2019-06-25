@@ -27,6 +27,11 @@ export default class localStorageClass {
       elem.addEventListener('click', () => mainCanvas.refresh());
       elem.addEventListener('dragstart', () => frames.dragAndDrop(elem));
       frames.dragAndDrop(elem);
+      const copyButton = elem.querySelector('#copyButton');
+      const deleteButton = elem.querySelector('#deleteButton');
+
+      copyButton.addEventListener('click', event => frames.copyFrame(event), true);
+      deleteButton.addEventListener('click', event => frames.deleteFrame(event), true);
     });
     mainCanvas.refresh();
     addButton.addEventListener('click', () => frames.addFrame());

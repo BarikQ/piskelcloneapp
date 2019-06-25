@@ -1,6 +1,8 @@
 import Canvas from '../Canvas/Canvas';
 import gifshot from '../gifshot';
 
+const hexToRgba = require('hex-to-rgba');
+
 const mainCanvas = new Canvas(800, 800, 'mainCanvas', 'mainCanvas');
 
 export default class Intruments {
@@ -91,13 +93,13 @@ export default class Intruments {
       },
       function gifFunc(obj) {
         if (!obj.error) {
-          const image = [obj.image][0];
-          const animatedImage = document.createElement('img');
-          animatedImage.src = image;
+          const gif = [obj.image][0];
+          const animatedGif = document.createElement('img');
+          animatedGif.src = gif;
 
           const saveLink = document.createElement('a');
           saveLink.onclick = () => {
-            saveLink.href = animatedImage.src;
+            saveLink.href = animatedGif.src;
             saveLink.target = '_blank';
             saveLink.download = 'New Sprite.gif';
           };
@@ -154,5 +156,29 @@ export default class Intruments {
 
       ctx.fillRect(cX0 * divider, cY0 * divider, divider, divider);
     }
+  }
+
+  getPixelColor(imgData, x, y) {
+    const index = (y * imgData.width + x) * 4;
+    const rgba = {};
+
+    rgba.r = imgData.data[index];
+    rgba.g = imgData.data[index + 1];
+    rgba.b = imgData.data[index + 2];
+    rgba.a = imgData.data[index + 3];
+    return rgba;
+  }
+
+  convertHexToRgba(hex) {
+    const regExp = /(.*?)(rgb|rgba)\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+(?:\.\d+)?))?\)/;
+    const stringColor = hexToRgba(hex);
+    const result = stringColor.match(regExp);
+    const rgba = {
+      r: result[3],
+      g: result[4],
+      b: result[5],
+      a: result[6]
+    };
+    return rgba;
   }
 }

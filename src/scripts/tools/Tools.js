@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 import Frames from '../frames/Frames';
 import Canvas from '../Canvas/Canvas';
 import Color from './Color/Color';
@@ -156,6 +157,7 @@ export default class Tools {
       cY1 = Math.floor(y1 / divider);
       instruments.simpleBresenhams(cX0, cY0, cX1, cY1, divider, ctx);
       isDrawing = false;
+      frames.render();
     }
 
     function stopDrawingOut(e) {
@@ -167,6 +169,7 @@ export default class Tools {
       cX1 = Math.floor(x1 / divider);
       cY1 = Math.floor(y1 / divider);
       instruments.simpleBresenhams(cX0, cY0, cX1, cY1, divider, ctx);
+      frames.render();
     }
 
     canvas.addEventListener('mousedown', startDrawing);
@@ -174,66 +177,66 @@ export default class Tools {
     canvas.addEventListener('mouseup', stopDrawing);
   }
 
-  veerTool() {
-    // StrokeTool() {
-    //   this.changeTool();
-    //   const canvas = [mainCanvas.getCanvas().canvas][0];
-    //   const ctx = [mainCanvas.getCanvas().ctx][0];
-    //   let x0 = null;
-    //   let y0 = null;
-    //   let x1 = null;
-    //   let y1 = null;
-    //   let cX0 = null;
-    //   let cY0 = null;
-    //   let cX1 = null;
-    //   let cY1 = null;
-    //   function draw(e) {
-    //     const pixelsNumber = instruments.getCanvasSize();
-    //     const divider = canvas.width / pixelsNumber;
-    //     x1 = instruments.getCursorCoords(e).x;
-    //     y1 = instruments.getCursorCoords(e).y;
-    //     cX1 = Math.floor(x1 / divider);
-    //     cY1 = Math.floor(y1 / divider);
-    //     cX0 = Math.floor(x0 / divider);
-    //     cY0 = Math.floor(y0 / divider);
-    //     console.log(cX1, cY1);
-    //     const dx = Math.abs(cX1 - cX0);
-    //     const dy = Math.abs(cY1 - cY0);
-    //     const sx = cX0 < cX1 ? 1 : -1;
-    //     const sy = cY0 < cY1 ? 1 : -1;
-    //     let err = dx - dy;
-    //     while (true) {
-    //       // ctx.clearRect(cX0 * divider, cY0 * divider, divider, divider);
-    //       ctx.fillRect(cX0 * divider, cY0 * divider, divider, divider);
-    //       if (cX0 === cX1 && cY0 === cY1) break;
-    //       const err2 = 2 * err;
-    //       if (err2 >= -dy) {
-    //         err -= dy;
-    //         cX0 += sx;
-    //       }
-    //       if (err2 <= dx) {
-    //         err += dx;
-    //         cY0 += sy;
-    //       }
-    //     }
-    //   }
-    //   function startDrawing(e) {
-    //     ctx.beginPath();
-    //     ctx.fillStyle = colors.primaryColor;
-    //     x0 = instruments.getCursorCoords(e).x;
-    //     y0 = instruments.getCursorCoords(e).y;
-    //     x0 = Math.floor(x0);
-    //     y0 = Math.floor(y0);
-    //     ctx.moveTo(x0, y0);
-    //     canvas.addEventListener('mousemove', draw);
-    //   }
-    //   function stopDrawing() {
-    //     canvas.removeEventListener('mousemove', draw);
-    //   }
-    //   canvas.addEventListener('mousedown', startDrawing);
-    //   canvas.addEventListener('mouseout', stopDrawing);
-    //   canvas.addEventListener('mouseup', stopDrawing);
-    // }
+  strangeTool() {
+    this.changeTool();
+    const canvas = [mainCanvas.getCanvas().canvas][0];
+    const ctx = [mainCanvas.getCanvas().ctx][0];
+    let x0 = null;
+    let y0 = null;
+    let x1 = null;
+    let y1 = null;
+    let cX0 = null;
+    let cY0 = null;
+    let cX1 = null;
+    let cY1 = null;
+    function draw(e) {
+      const pixelsNumber = instruments.getCanvasSize();
+      const divider = canvas.width / pixelsNumber;
+      x1 = instruments.getCursorCoords(e).x;
+      y1 = instruments.getCursorCoords(e).y;
+      cX1 = Math.floor(x1 / divider);
+      cY1 = Math.floor(y1 / divider);
+      cX0 = Math.floor(x0 / divider);
+      cY0 = Math.floor(y0 / divider);
+
+      const dx = Math.abs(cX1 - cX0);
+      const dy = Math.abs(cY1 - cY0);
+      const sx = cX0 < cX1 ? 1 : -1;
+      const sy = cY0 < cY1 ? 1 : -1;
+      let err = dx - dy;
+      while (true) {
+        ctx.fillRect(cX0 * divider, cY0 * divider, divider, divider);
+        if (cX0 === cX1 && cY0 === cY1) break;
+        const err2 = 2 * err;
+        if (err2 >= -dy) {
+          err -= dy;
+          cX0 += sx;
+        }
+        if (err2 <= dx) {
+          err += dx;
+          cY0 += sy;
+        }
+      }
+    }
+
+    function startDrawing(e) {
+      ctx.beginPath();
+      ctx.fillStyle = colors.primaryColor;
+      x0 = instruments.getCursorCoords(e).x;
+      y0 = instruments.getCursorCoords(e).y;
+      x0 = Math.floor(x0);
+      y0 = Math.floor(y0);
+      ctx.moveTo(x0, y0);
+      canvas.addEventListener('mousemove', draw);
+    }
+
+    function stopDrawing() {
+      canvas.removeEventListener('mousemove', draw);
+    }
+
+    canvas.addEventListener('mousedown', startDrawing);
+    canvas.addEventListener('mouseout', stopDrawing);
+    canvas.addEventListener('mouseup', stopDrawing);
   }
 
   eraserTool() {
@@ -242,12 +245,122 @@ export default class Tools {
     this.PenTool(true);
   }
 
+  bucketTool() {
+    this.changeTool();
+
+    const canvas = [mainCanvas.getCanvas().canvas][0];
+    const ctx = [mainCanvas.getCanvas().ctx][0];
+    // let pixelsNumber = instruments.getCanvasSize();
+    // let divider = canvas.width / pixelsNumber;
+
+    let imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+
+    function colorArea(e) {
+      imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      // pixelsNumber = instruments.getCanvasSize();
+      // divider = canvas.width / pixelsNumber;
+
+      let cX0 = instruments.getCursorCoords(e).x;
+      let cY0 = instruments.getCursorCoords(e).y;
+      ctx.fillStyle = colors.primaryColor;
+
+      const fillColor = instruments.convertHexToRgba(colors.primaryColor);
+
+      cX0 = Math.floor(cX0);
+      cY0 = Math.floor(cY0);
+
+      const rgba0 = instruments.getPixelColor(imgData, cX0, cY0);
+
+      // cX0 = Math.floor(cX0 / divider);
+      // cY0 = Math.floor(cY0 / divider);
+      // cY0 *= divider;
+      // cX0 *= divider;
+
+      const pixelStack = [[cX0, cY0]];
+      const colorLayerData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      const startR = rgba0.r;
+      const startG = rgba0.g;
+      const startB = rgba0.b;
+      console.log(startR, fillColor.r);
+
+      if (startR == fillColor.r && startG == fillColor.g && startB == fillColor.b) return;
+
+      while (pixelStack.length) {
+        let newPos = [];
+        let pixelPos = null;
+        let reachLeft = null;
+        let reachRight = null;
+        let x = null;
+        let y = null;
+
+        newPos = pixelStack.pop();
+        [x, y] = [newPos[0], newPos[1]];
+
+        pixelPos = (y * canvas.width + x) * 4;
+
+        while (y >= 0 && matchStartColor(pixelPos)) {
+          y -= 1;
+          pixelPos -= canvas.width * 4;
+        }
+        pixelPos += canvas.width * 4;
+        reachLeft = false;
+        reachRight = false;
+        while (y < canvas.height - 1 && matchStartColor(pixelPos)) {
+          y += 1;
+          colorPixel(pixelPos);
+          if (x > 0) {
+            if (matchStartColor(pixelPos - 4)) {
+              if (!reachLeft) {
+                pixelStack.push([x - 1, y]);
+                reachLeft = true;
+              }
+            } else if (reachLeft) {
+              reachLeft = false;
+            }
+          }
+          if (x < canvas.width - 1) {
+            if (matchStartColor(pixelPos + 4)) {
+              if (!reachRight) {
+                pixelStack.push([x + 1, y]);
+                reachRight = true;
+              }
+            } else if (reachRight) {
+              reachRight = false;
+            }
+          }
+          pixelPos += canvas.width * 4;
+        }
+      }
+      ctx.putImageData(colorLayerData, 0, 0);
+
+      function matchStartColor(pixelPos) {
+        const r = colorLayerData.data[pixelPos];
+        const g = colorLayerData.data[pixelPos + 1];
+        const b = colorLayerData.data[pixelPos + 2];
+
+        return r == startR && g == startG && b == startB;
+      }
+
+      function colorPixel(pixelPos) {
+        colorLayerData.data[pixelPos] = fillColor.r;
+        colorLayerData.data[pixelPos + 1] = fillColor.g;
+        colorLayerData.data[pixelPos + 2] = fillColor.b;
+        colorLayerData.data[pixelPos + 3] = 255;
+      }
+      frames.render();
+    }
+
+    canvas.addEventListener('click', e => colorArea(e));
+  }
+
   addEventListeners() {
     const toolsList = document.querySelectorAll('.tool');
 
     toolsList[0].addEventListener('click', () => this.PenTool());
+    toolsList[1].addEventListener('click', () => this.bucketTool());
     toolsList[2].addEventListener('click', () => this.eraserTool());
     toolsList[3].addEventListener('click', () => this.StrokeTool());
+    toolsList[4].addEventListener('click', () => this.strangeTool());
   }
 
   changeTool() {
