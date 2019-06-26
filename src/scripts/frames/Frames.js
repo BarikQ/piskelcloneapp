@@ -1,6 +1,5 @@
 import Canvas from '../Canvas/Canvas';
 import Instruments from '../instruments/instruments';
-// import 'jquery-ui-dist/jquery-ui';
 
 const mainCanvas = new Canvas(800, 800, 'mainCanvas', 'mainCanvas');
 const instruments = new Instruments();
@@ -17,7 +16,7 @@ export default class Frames {
       }
     });
 
-    const currentImg = mainCanvas.convertToImg('104px');
+    const currentImg = mainCanvas.convertToFrame('104px');
     currentImg.id = `frame_img_${number}`;
     currentImg.draggable = 'true';
     activeFrame.replaceChild(currentImg, activeFrame.querySelector('.imgFrame'));
@@ -53,7 +52,7 @@ export default class Frames {
     deleteButton.addEventListener('click', event => this.deleteFrame(event), true);
     newFrame.style.backgroundImage = null;
 
-    newFrame.replaceChild(mainCanvas.convertToImg('104px'), newFrame.querySelector('.imgFrame'));
+    newFrame.replaceChild(mainCanvas.convertToFrame('104px'), newFrame.querySelector('.imgFrame'));
   }
 
   copyFrame(event) {
@@ -109,5 +108,9 @@ export default class Frames {
 
   getFrames() {
     return document.querySelectorAll('.frame');
+  }
+
+  dragAndDrop(frame) {
+    this.classList = 'list-group-item frame active';
   }
 }

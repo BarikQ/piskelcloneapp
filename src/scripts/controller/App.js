@@ -31,11 +31,12 @@ export default class App {
     const clearDataButton = document.querySelector('#clearButton');
     const renderDataButton = document.querySelector('#renderButton');
     const downloadButton = document.querySelector('#downloadButton');
+    const selectSize = document.querySelector('#sizes_canvas');
 
     preview.showRate();
 
     canvasContainer.appendChild(mainCanvas.create().canvas);
-    frame0Container.appendChild(mainCanvas.convertToImg('200px'));
+    frame0Container.appendChild(mainCanvas.convertToFrame('200px'));
 
     toolsList.forEach(element => {
       element.addEventListener('click', () => instruments.active(element, '.tool'));
@@ -63,6 +64,8 @@ export default class App {
 
     instruments.showCanvasInfo();
     preview.startAnimation(0);
+
+    selectSize.addEventListener('click', event => mainCanvas.resize(event, selectSize));
 
     downloadButton.addEventListener('click', instruments.downloadGif);
     $(() => {

@@ -44,15 +44,26 @@ export default class Canvas {
     this.getCanvas().ctx.fillRect(0, 0, this.height, this.width);
   }
 
-  convertToImg(size) {
+  convertToFrame(size) {
     const framesList = document.querySelectorAll('.frame');
     const imgUrl = this.getCanvas().canvas.toDataURL();
     const img = new Image();
     img.src = imgUrl;
-    img.style.width = size;
-    img.style.height = size;
+    img.style.width = `${size}px`;
+    img.style.height = `${size}px`;
     img.classList = 'imgFrame';
     img.id = `frame_img_${framesList.length - 1}`;
+
+    return img;
+  }
+
+  convertToImg(size) {
+    const imgUrl = this.getCanvas().canvas.toDataURL();
+    const img = new Image();
+    img.src = imgUrl;
+    img.style.width = `${size}px`;
+    img.style.height = `${size}px`;
+    img.style.imageRendering = 'pixelated';
 
     return img;
   }
@@ -68,7 +79,51 @@ export default class Canvas {
     const activeImg = activeFrame.querySelector('.imgFrame');
 
     this.clearCanvas();
+    this.getCanvas().ctx.imageSmoothingEnabled = false;
+    this.getCanvas().ctx.drawImage(
+      activeImg,
+      0,
+      0,
+      this.getCanvas().canvas.width,
+      this.getCanvas().canvas.height
+    );
+  }
 
-    this.getCanvas().ctx.drawImage(activeImg, 0, 0, 800, 800);
+  resize(event, selectSize) {
+    const canvas = [this.getCanvas().canvas][0];
+    const ctx = [this.getCanvas().ctx][0];
+    const image = this.convertToImg(canvas.width);
+
+    const defaultSizeIndex = selectSize.selectedIndex;
+
+    function resizeTwo(mainCanvas) {
+      let scale = null;
+      let scaleDefault = null;
+      let size = null;
+      let sizeDefault = null;
+
+      const selectedSizeIndex = selectSize.selectedIndex;
+
+      if (defaultSizeIndex === selectedSizeIndex) {
+        selectSize.removeEventListener('change', resizeTwo);
+        return;
+      }
+
+      if (defaultSizeIndex === 0) scaleDefault = 1;
+      else scaleDefault = defaultSizeIndex * 2;
+      if (selectedSizeIndex === 0) scale = 1;
+      else scale = selectedSizeIndex * 2;
+
+      sizeDefault = canvas.width / scaleDefault;
+      size = canvas.width / scale;
+
+      mainCanvas.clearCanvas();
+
+      ctx.imageSmoothingEnabled = false;
+      ctx.drawImage(image, 0, 0, sizeDefault, sizeDefault, 0, 0, size, size);
+      selectSize.removeEventListener('change', resizeTwo);
+    }
+
+    selectSize.addEventListener('change', () => resizeTwo(this));
   }
 }

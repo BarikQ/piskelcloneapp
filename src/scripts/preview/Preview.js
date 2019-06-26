@@ -33,7 +33,7 @@ export default class Preview {
     }
 
     if (counter < framesList.length) {
-      if (rng.value !== 0) {
+      if (rng.value != 0) {
         animateFrames(framesList[counter]);
         counter += 1;
       }

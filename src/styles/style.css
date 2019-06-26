@@ -309,6 +309,7 @@ canvas {
   background-image: url('../../img/icons.png');
   background-position: -274px -106px;
   right: 0;
+  top: 0;
 }
 
 .imgFrame {
@@ -534,4 +535,9 @@ input[type='range'].frame_rate:focus::-ms-fill-lower {
 
 input[type='range'].frame_rate:focus::-ms-fill-upper {
   background: rgba(26, 26, 26, 0);
+}
+
+.ui-sortable-helper {
+  border: 3px solid rebeccapurple !important;
+  box-shadow: 0 0 8px 3px #01a661;
 }

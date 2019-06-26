@@ -353,6 +353,10 @@ export default class Tools {
     canvas.addEventListener('click', e => colorArea(e));
   }
 
+  moveTool() {
+    this.changeTool();
+  }
+
   addEventListeners() {
     const toolsList = document.querySelectorAll('.tool');
 
@@ -361,10 +365,11 @@ export default class Tools {
     toolsList[2].addEventListener('click', () => this.eraserTool());
     toolsList[3].addEventListener('click', () => this.StrokeTool());
     toolsList[4].addEventListener('click', () => this.strangeTool());
+    toolsList[7].addEventListener('click', () => this.moveTool());
   }
 
   changeTool() {
-    const image = mainCanvas.convertToImg(800);
+    const image = mainCanvas.convertToFrame(800);
     const canvas = mainCanvas.getCanvas().canvas.cloneNode();
     const ctx = canvas.getContext('2d');
 

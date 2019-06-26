@@ -15,6 +15,7 @@ module.exports = {
     'class-methods-use-this': 'off',
     'no-use-before-define': ['error', { functions: false, classes: false }],
     quotes: 'off',
-    code: 120
+    code: 120,
+    eqeqeq: 'off'
   }
 };
