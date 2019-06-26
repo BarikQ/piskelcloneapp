@@ -1,0 +1,16 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+button {
+  border: 3px solid rebeccapurple;
+  border-radius: 10rem;
+  padding: 10px;
+  background: none;
+  color: #01a661;
+  box-shadow: 0 0 10px 3px rebeccapurple;
+  text-shadow: 0 0 10px;
+  width: 160px;
+  cursor: pointer;
+}

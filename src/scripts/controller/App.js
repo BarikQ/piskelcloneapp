@@ -5,6 +5,8 @@ import Instruments from '../instruments/instruments';
 import Preview from '../preview/Preview';
 import LocaleStorageClass from '../localeStorage/localeStorage';
 
+import 'jquery-ui-dist/jquery-ui';
+
 export default class App {
   constructor() {
     this.penSize = 1;
@@ -43,8 +45,6 @@ export default class App {
     frame0Container.addEventListener('click', () => mainCanvas.refresh());
     frame0Container.addEventListener('dragstart', () => frames.dragAndDrop(frame0Container));
 
-    frames.dragAndDrop(frame0Container);
-
     tools.addEventListeners();
 
     addButton.addEventListener('click', () => frames.addFrame());
@@ -65,5 +65,9 @@ export default class App {
     preview.startAnimation(0);
 
     downloadButton.addEventListener('click', instruments.downloadGif);
+    $(() => {
+      $('#sortable').sortable();
+      $('#sortable').disableSelection();
+    });
   }
 }

@@ -23,7 +23,7 @@ button:hover {
   justify-content: space-around;
 }
 
-.navbar > button:hover {
+.navbar>button:hover {
   transition: 0.2s all ease;
   transform: scale(1.05);
 }
@@ -35,9 +35,9 @@ button:hover {
 }
 
 .left-column {
-  display: grid;
-  grid-template: 800px / 110px;
-  grid-gap: 5px;
+  display: flex;
+  flex-direction: column;
+  max-height: 800px;
 }
 
 .main-column {
@@ -46,9 +46,9 @@ button:hover {
   justify-content: center;
 }
 
-.left-column > .list-group {
-  width: 120px;
-  overflow: overlay;
+.left-column>.list-group {
+  width: 130px;
+  overflow-y: scroll;
   display: block;
   padding: 5px;
 }
@@ -95,7 +95,7 @@ button:hover {
 .tools-list {
   display: grid;
   grid-template: 1fr / 1fr;
-  grid-gap: 10px;
+  grid-gap: 8px;
   padding: 5px;
   justify-items: center;
 }
@@ -196,13 +196,13 @@ button:hover {
   height: 100%;
 }
 
-.color > label {
+.color>label {
   position: relative;
   top: -5px;
   left: 10px;
 }
 
-.color > input {
+.color>input {
   border-radius: 10px;
 }
 
@@ -331,7 +331,7 @@ canvas {
 .clearButton,
 .renderButton,
 .downloadButton,
-.nav_btn_container > button,
+.nav_btn_container>button,
 .add-btn {
   border: 3px solid rebeccapurple;
   border-radius: 10rem;
@@ -348,28 +348,28 @@ canvas {
   justify-content: center;
 }
 
-.author > h2 {
+.author>h2 {
   text-shadow: 0px 0px 15px rebeccapurple;
   font-weight: 200;
   color: red;
   transition: 0.2s ease all;
 }
 
-.author > h2 > a {
+.author>h2>a {
   color: red;
 }
 
-.author > h2:hover {
+.author>h2:hover {
   transition: 0.2s ease all;
   transform: scale(1.05);
 }
 
-.author > h2:hover > a {
+.author>h2:hover>a {
   text-shadow: 0px 0px 15px white;
   text-decoration: none;
 }
 
-.localStorageButtons > button {
+.localStorageButtons>button {
   margin: 5px 0;
 }
 
