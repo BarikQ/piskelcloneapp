@@ -1,4 +1,3 @@
-/* eslint-disable eqeqeq */
 import Frames from '../frames/frames';
 import Canvas from '../Canvas/Canvas';
 import Color from './Color/Color';
@@ -6,6 +5,7 @@ import Instruments from '../instruments/instruments';
 
 const mainCanvas = new Canvas(800, 800, 'mainCanvas', 'mainCanvas');
 const renderCanvas = new Canvas(800, 800, 'renderCanvas', 'renderCanvas');
+const canvasHelper = new Canvas(800, 800, 'canvasHelper', 'canvasHelper');
 const colors = new Color('main');
 const instruments = new Instruments();
 const frames = new Frames();
@@ -487,12 +487,15 @@ export default class Tools {
     const renderCtx = renderCanvas.getCanvas().ctx;
     const renderCanvasC = renderCanvas.getCanvas().canvas;
 
+    renderCtx.imageSmoothingEnabled = false;
+
     let pixelsNumber = instruments.getCanvasSize();
     let divider = canvas.width / pixelsNumber;
     let x0 = null;
     let y0 = null;
     let x1 = null;
     let y1 = null;
+    let isDrawing = false;
 
     function move(e) {
       pixelsNumber = instruments.getCanvasSize();
@@ -519,14 +522,22 @@ export default class Tools {
     }
 
     function startMoving(e) {
+      renderCanvas.getCanvas().ctx.drawImage(canvas, 0, 0);
+      canvas.style.opacity = '0';
+      canvasHelper.getCanvas().canvas.style.opacity = '0';
+      pixelsNumber = instruments.getCanvasSize();
+      divider = canvas.width / pixelsNumber;
       x0 = instruments.getCursorCoords(e).x;
       y0 = instruments.getCursorCoords(e).y;
+      isDrawing = true;
 
       x0 = Math.floor(x0);
       y0 = Math.floor(y0);
       x0 = Math.floor(x0 / divider);
       y0 = Math.floor(y0 / divider);
+
       renderCanvasC.style.opacity = '1';
+
       renderCanvasC.addEventListener('mousemove', move);
     }
 
@@ -536,17 +547,38 @@ export default class Tools {
       y1 = instruments.getCursorCoords(e).y;
       x1 = Math.floor(x1 / divider);
       y1 = Math.floor(y1 / divider);
+      ctx.imageSmoothingEnabled = false;
+      isDrawing = false;
 
       mainCanvas.clearCanvas();
       canvas.style.opacity = '1';
       ctx.drawImage(renderCanvasC, 0, 0);
       frames.render();
 
+      canvasHelper.getCanvas().canvas.style.opacity = '1';
+      renderCanvasC.style.opacity = '0';
+    }
+
+    function stopMovingOut(e) {
+      renderCanvasC.removeEventListener('mousemove', move);
+      if (e.type === 'mouseout' && !isDrawing) return;
+      x1 = instruments.getCursorCoords(e).x;
+      y1 = instruments.getCursorCoords(e).y;
+      x1 = Math.floor(x1 / divider);
+      y1 = Math.floor(y1 / divider);
+      ctx.imageSmoothingEnabled = false;
+
+      mainCanvas.clearCanvas();
+      canvas.style.opacity = '1';
+      ctx.drawImage(renderCanvasC, 0, 0);
+      frames.render();
+
+      canvasHelper.getCanvas().canvas.style.opacity = '1';
       renderCanvasC.style.opacity = '0';
     }
 
     renderCanvasC.addEventListener('mousedown', startMoving);
-    renderCanvasC.addEventListener('mouseout', stopMoving);
+    renderCanvasC.addEventListener('mouseout', stopMovingOut);
     renderCanvasC.addEventListener('mouseup', stopMoving);
   }
 

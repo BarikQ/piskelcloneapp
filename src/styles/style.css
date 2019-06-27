@@ -110,6 +110,7 @@ button:hover {
   justify-content: center;
   cursor: pointer;
   background-image: url(./../../img/icons.png);
+  position: relative;
 }
 
 .pen {
@@ -565,4 +566,33 @@ input[type='range'].frame_rate:focus::-ms-fill-upper {
   top: 0;
   left: 0;
   z-index: 101;
+}
+
+.tool {
+  z-index: 1000;
+}
+
+.hint {
+  display: none;
+  position: absolute;
+  transition: 0.2s ease all;
+  text-align: left;
+  right: -260px;
+  top: 0px;
+  overflow: visible;
+  height: 70px;
+  width: 250px;
+  border: 3px solid rebeccapurple;
+  box-shadow: 0 0 10px 3px rebeccapurple;
+  border-radius: 10px;
+  padding: 5px 0 0 10px;
+  background-color: black;
+  color: #01a661;
+  text-shadow: 0 0 10px;
+  font-size: 15px;
+}
+
+.tool:hover .hint {
+  transition: 0.2s ease all;
+  display: block;
 }
