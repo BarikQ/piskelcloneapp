@@ -89,10 +89,14 @@ export default class Canvas {
     );
   }
 
-  resize(event, selectSize) {
+  resize(event, selectSize, canvasHelper) {
     const canvas = [this.getCanvas().canvas][0];
     const ctx = [this.getCanvas().ctx][0];
+    const framesImages = document.querySelectorAll('.imgFrame');
     const image = this.convertToImg(canvas.width);
+    const framesList = document.querySelectorAll('.frame');
+
+    const helperCtx = canvasHelper.getCanvas().ctx;
 
     const defaultSizeIndex = selectSize.selectedIndex;
 
@@ -121,6 +125,19 @@ export default class Canvas {
 
       ctx.imageSmoothingEnabled = false;
       ctx.drawImage(image, 0, 0, sizeDefault, sizeDefault, 0, 0, size, size);
+
+      framesImages.forEach((elem, index) => {
+        canvasHelper.clearCanvas();
+        helperCtx.imageSmoothingEnabled = false;
+        helperCtx.drawImage(elem, 0, 0, sizeDefault, sizeDefault, 0, 0, size, size);
+
+        const currentImg = canvasHelper.convertToFrame('104px');
+        currentImg.id = `frame_img_${index}`;
+        currentImg.draggable = 'true';
+        framesList[index].replaceChild(currentImg, framesList[index].querySelector('.imgFrame'));
+        framesList[index].style.backgroundImage = `url("${currentImg.src}")`;
+      });
+
       selectSize.removeEventListener('change', resizeTwo);
     }
 

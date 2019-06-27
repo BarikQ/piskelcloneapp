@@ -1,6 +1,6 @@
 import Instruments from '../instruments/instruments';
 import Canvas from '../Canvas/Canvas';
-import Frames from '../frames/Frames';
+import Frames from '../frames/frames';
 
 const mainCanvas = new Canvas(800, 800, 'mainCanvas', 'mainCanvas');
 const instruments = new Instruments();

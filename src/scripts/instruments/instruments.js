@@ -134,6 +134,7 @@ export default class Intruments {
   }
 
   simpleBresenhams(cX0, cY0, cX1, cY1, divider, ctx) {
+    const penSize = this.getPenSize();
     const dx = Math.abs(cX1 - cX0);
     const dy = Math.abs(cY1 - cY0);
     const sx = cX0 < cX1 ? 1 : -1;
@@ -154,13 +155,14 @@ export default class Intruments {
         cY0 += sy;
       }
 
-      ctx.fillRect(cX0 * divider, cY0 * divider, divider, divider);
+      ctx.fillRect(cX0 * divider, cY0 * divider, divider * penSize, divider * penSize);
     }
   }
 
   getPixelColor(imgData, x, y) {
     const index = (y * imgData.width + x) * 4;
     const rgba = {};
+    console.log(index);
 
     rgba.r = imgData.data[index];
     rgba.g = imgData.data[index + 1];

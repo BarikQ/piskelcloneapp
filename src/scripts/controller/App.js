@@ -1,6 +1,6 @@
 import Canvas from '../Canvas';
 import Tools from '../tools/Tools';
-import Frames from '../frames/Frames';
+import Frames from '../frames/frames';
 import Instruments from '../instruments/instruments';
 import Preview from '../preview/Preview';
 import LocaleStorageClass from '../localeStorage/localeStorage';
@@ -14,6 +14,7 @@ export default class App {
 
   start() {
     const mainCanvas = new Canvas(800, 800, 'mainCanvas', 'mainCanvas');
+    const canvasHelper = new Canvas(800, 800, 'canvasHelper', 'canvasHelper');
     const tools = new Tools();
     const frames = new Frames();
     const preview = new Preview();
@@ -36,6 +37,7 @@ export default class App {
     preview.showRate();
 
     canvasContainer.appendChild(mainCanvas.create().canvas);
+    canvasContainer.appendChild(canvasHelper.create().canvas);
     frame0Container.appendChild(mainCanvas.convertToFrame('200px'));
 
     toolsList.forEach(element => {
@@ -44,7 +46,6 @@ export default class App {
 
     frame0Container.addEventListener('click', () => instruments.active(frame0Container, '.frame'));
     frame0Container.addEventListener('click', () => mainCanvas.refresh());
-    frame0Container.addEventListener('dragstart', () => frames.dragAndDrop(frame0Container));
 
     tools.addEventListeners();
 
@@ -65,7 +66,9 @@ export default class App {
     instruments.showCanvasInfo();
     preview.startAnimation(0);
 
-    selectSize.addEventListener('click', event => mainCanvas.resize(event, selectSize));
+    selectSize.addEventListener('click', event =>
+      mainCanvas.resize(event, selectSize, canvasHelper)
+    );
 
     downloadButton.addEventListener('click', instruments.downloadGif);
     $(() => {

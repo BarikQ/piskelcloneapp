@@ -2,6 +2,7 @@ import Canvas from '../Canvas/Canvas';
 import Instruments from '../instruments/instruments';
 
 const mainCanvas = new Canvas(800, 800, 'mainCanvas', 'mainCanvas');
+const renderCanvas = new Canvas(800, 800, 'renderCanvas', 'renderCanvas');
 const instruments = new Instruments();
 
 export default class Frames {
@@ -24,6 +25,18 @@ export default class Frames {
   }
 
   addFrame() {
+    const canvasContainer = document.querySelector('.canvas-main-container');
+    if (canvasContainer.querySelector('#renderCanvas')) {
+      renderCanvas
+        .getCanvas()
+        .ctx.clearRect(
+          0,
+          0,
+          renderCanvas.getCanvas().canvas.height,
+          renderCanvas.getCanvas().canvas.width
+        );
+    }
+
     const framesList = document.querySelectorAll('.frame');
     let newFrame = null;
 
@@ -56,6 +69,18 @@ export default class Frames {
   }
 
   copyFrame(event) {
+    const canvasContainer = document.querySelector('.canvas-main-container');
+    if (canvasContainer.querySelector('#renderCanvas')) {
+      renderCanvas
+        .getCanvas()
+        .ctx.clearRect(
+          0,
+          0,
+          renderCanvas.getCanvas().canvas.height,
+          renderCanvas.getCanvas().canvas.width
+        );
+    }
+
     event.stopPropagation();
 
     const choosenFrame = event.target.parentNode;
@@ -89,6 +114,18 @@ export default class Frames {
   }
 
   deleteFrame(event) {
+    const canvasContainer = document.querySelector('.canvas-main-container');
+    if (canvasContainer.querySelector('#renderCanvas')) {
+      renderCanvas
+        .getCanvas()
+        .ctx.clearRect(
+          0,
+          0,
+          renderCanvas.getCanvas().canvas.height,
+          renderCanvas.getCanvas().canvas.width
+        );
+    }
+
     event.stopPropagation();
     let framesList = document.querySelectorAll('.frame');
 
@@ -108,9 +145,5 @@ export default class Frames {
 
   getFrames() {
     return document.querySelectorAll('.frame');
-  }
-
-  dragAndDrop(frame) {
-    this.classList = 'list-group-item frame active';
   }
 }

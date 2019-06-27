@@ -23,7 +23,7 @@ button:hover {
   justify-content: space-around;
 }
 
-.navbar>button:hover {
+.navbar > button:hover {
   transition: 0.2s all ease;
   transform: scale(1.05);
 }
@@ -46,7 +46,7 @@ button:hover {
   justify-content: center;
 }
 
-.left-column>.list-group {
+.left-column > .list-group {
   width: 130px;
   overflow-y: scroll;
   display: block;
@@ -118,6 +118,10 @@ button:hover {
 
 .bucket {
   background-position: -228px -92px;
+}
+
+.colorSwap {
+  background-position: -228px -138px;
 }
 
 .eraser {
@@ -196,13 +200,13 @@ button:hover {
   height: 100%;
 }
 
-.color>label {
+.color > label {
   position: relative;
   top: -5px;
   left: 10px;
 }
 
-.color>input {
+.color > input {
   border-radius: 10px;
 }
 
@@ -266,8 +270,7 @@ canvas {
 }
 
 .mainCanvas {
-  margin-top: 15px;
-  box-shadow: 0px 0px 15px 2px red;
+  z-index: 100;
 }
 
 .full {
@@ -332,7 +335,7 @@ canvas {
 .clearButton,
 .renderButton,
 .downloadButton,
-.nav_btn_container>button,
+.nav_btn_container > button,
 .add-btn {
   border: 3px solid rebeccapurple;
   border-radius: 10rem;
@@ -349,28 +352,28 @@ canvas {
   justify-content: center;
 }
 
-.author>h2 {
+.author > h2 {
   text-shadow: 0px 0px 15px rebeccapurple;
   font-weight: 200;
   color: red;
   transition: 0.2s ease all;
 }
 
-.author>h2>a {
+.author > h2 > a {
   color: red;
 }
 
-.author>h2:hover {
+.author > h2:hover {
   transition: 0.2s ease all;
   transform: scale(1.05);
 }
 
-.author>h2:hover>a {
+.author > h2:hover > a {
   text-shadow: 0px 0px 15px white;
   text-decoration: none;
 }
 
-.localStorageButtons>button {
+.localStorageButtons > button {
   margin: 5px 0;
 }
 
@@ -540,4 +543,26 @@ input[type='range'].frame_rate:focus::-ms-fill-upper {
 .ui-sortable-helper {
   border: 3px solid rebeccapurple !important;
   box-shadow: 0 0 8px 3px #01a661;
+}
+
+.canvas-main-container {
+  position: relative;
+  height: 800px;
+  width: 800px;
+  margin-top: 15px;
+  box-shadow: 0px 0px 15px 2px red;
+}
+
+.canvasHelper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.renderCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 101;
 }
