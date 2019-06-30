@@ -624,6 +624,27 @@ input[type='range'].frame_rate:focus::-ms-fill-upper {
   color: red;
 }
 
-.userData {
-  display: none;
+.userPic {
+  height: 50px;
+  width: 50px;
+}
+
+.userContent {
+  grid-template: 35px 20px/200px 50px;
+  grid-column-gap: 20px;
+}
+
+.nav_btn_container::before {
+  content: 'Sign In —>';
+
+}
+
+.nav_btn_container {
+  color: #01a661;
+  text-shadow: 0 0 10px;
+  font-size: 15px;
+  display: grid;
+  grid-template: 1fr /1fr 1fr;
+  align-items: center;
+  grid-column-gap: 20px;
 }

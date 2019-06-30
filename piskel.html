@@ -10,6 +10,9 @@
     />
     <link rel="stylesheet" href="./bootstrap/bootstrap.css" />
     <link rel="stylesheet" href="./src/styles/style.css" />
+    <script src="./src/scripts/SingIn/SignIn.js"></script>
+
+    <script></script>
     <title>New piskel</title>
   </head>
   <body class="bg-dark">
@@ -20,17 +23,9 @@
         New Sprite
       </span>
 
-      <div class="nav_btn_container">
-        <button class="create_sprite" id="create_sprite">
-          Create Sprite
-        </button>
-        <button class="sign_in g-signin2" id="sign_in" data-onsuccess="onSignIn">Sign In</button>
-      </div>
-      <div class="userData">
-        <p id="email" class="alert alert-danger"></p>
-        <img class="img-circle" width="100" height="100" id="userPic" />
-        <button class="sign_out btn btn-danger" id="sign_out" onclick="signOut()"></button>
-      </div>
+      <div class="nav_btn_container" id="gSignIn"></div>
+
+      <div class="userContent" style="display: none;"></div>
     </nav>
 
     <div class="container-fluid">
@@ -188,6 +183,10 @@
     <script src="./dist/app.bundle.js"></script>
     <script src="./dist/gifshot.js"></script>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script
+      src="https://apis.google.com/js/client:platform.js?onload=renderButton"
+      async
+      defer
+    ></script>
   </body>
 </html>
