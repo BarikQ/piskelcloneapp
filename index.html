@@ -9,6 +9,7 @@
       name="google-signin-client_id"
       content="1087138147820-h0vnaq3268gj241ctokv99ifr3jj25a3.apps.googleusercontent.com"
     />
+    <script src="./src/scripts/SingIn/SignIn.js"></script>
   <link rel="stylesheet" href="./bootstrap/bootstrap.css" />
   <link rel="stylesheet" href="./src/styles/landing.css" />
   <title>Piskel Clone</title>
@@ -24,6 +25,11 @@
           Create Sprite
         </button>
         <button class="sign_in g-signin2" id="sign_in" data-onsuccess="onSignIn">Sign In</button>
+        <div class="userData">
+          <p id="email" class="alert alert-danger"></p>
+          <img class="img-circle" width="100" height="100" id="userPic" />
+          <button class="sign_out btn btn-danger" id="sign_out" onclick="signOut()"></button>
+        </div>
       </div>
     </nav>
 
