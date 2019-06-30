@@ -189,7 +189,8 @@ export default class Tools {
       if (e.type === 'mouseout' && !isDrawing) return;
 
       x1 = Math.floor(e.offsetX / divider);
-      y1 = Math.floor(e.offset / divider);
+      y1 = Math.floor(e.offsetY / divider);
+      console.log(x1, y1);
 
       instruments.simpleBresenhams(x0, y0, x1, y1, divider, ctx);
       frames.render();
