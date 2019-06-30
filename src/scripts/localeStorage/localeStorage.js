@@ -8,15 +8,16 @@ const frames = new Frames();
 
 export default class localStorageClass {
   save() {
-    const framesData = document.querySelector('#frames-list');
+    const framesData = document.querySelector('.list-group');
     localStorage.setItem('frames', framesData.outerHTML);
   }
 
   render() {
     if (!localStorage.getItem('frames')) return;
-    const framesData = document.querySelector('#frames-list');
+    const framesData = document.querySelector('.list-group');
 
     framesData.outerHTML = localStorage.getItem('frames');
+    mainCanvas.refresh();
 
     const framesList = document.querySelectorAll('.frame');
     const addButton = document.querySelector('#add-btn');
@@ -25,8 +26,6 @@ export default class localStorageClass {
       instruments.setFramesIventListeners(elem);
       elem.addEventListener('click', () => instruments.active(elem, '.frame'));
       elem.addEventListener('click', () => mainCanvas.refresh());
-      elem.addEventListener('dragstart', () => frames.dragAndDrop(elem));
-      frames.dragAndDrop(elem);
       const copyButton = elem.querySelector('#copyButton');
       const deleteButton = elem.querySelector('#deleteButton');
 
