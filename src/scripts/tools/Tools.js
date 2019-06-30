@@ -749,7 +749,14 @@ export default class Tools {
       x1 = Math.floor(e.offsetX / divider);
       y1 = Math.floor(e.offsetY / divider);
 
-      instruments.circleBresenhams(x0, y0, x1, y1, divider, ctx);
+      instruments.circleBresenhams(
+        x0 * divider,
+        y0 * divider,
+        x1 * divider,
+        y1 * divider,
+        divider,
+        ctx
+      );
       isDrawing = false;
       frames.render();
     }
@@ -762,7 +769,14 @@ export default class Tools {
       x1 = Math.floor(e.offsetX / divider);
       y1 = Math.floor(e.offset / divider);
 
-      instruments.circleBresenhams(x0, y0, x1, y1, divider, ctx);
+      instruments.circleBresenhams(
+        x0 * divider,
+        y0 * divider,
+        x1 * divider,
+        y1 * divider,
+        divider,
+        ctx
+      );
       frames.render();
       renderCanvas.getCanvas().canvas.style.opacity = '0';
     }
@@ -770,6 +784,23 @@ export default class Tools {
     renderCanvas.getCanvas().canvas.addEventListener('mousedown', startDrawing);
     renderCanvas.getCanvas().canvas.addEventListener('mouseout', stopDrawingOut);
     renderCanvas.getCanvas().canvas.addEventListener('mouseup', stopDrawing);
+  }
+
+  flipTool() {
+    this.changeTool();
+
+    const canvas = [mainCanvas.getCanvas().canvas][0];
+    const ctx = [mainCanvas.getCanvas().ctx][0];
+    const canvas2 = canvasHelper.getCanvas().canvas;
+    const ctx2 = canvasHelper.getCanvas().ctx;
+
+    ctx.save();
+
+    ctx2.drawImage(canvas, 0, 0);
+    ctx.scale(-1, 1);
+    ctx.drawImage(canvas2, -canvas.width, 0);
+
+    ctx.restore();
   }
 
   keyPess(event) {
@@ -784,7 +815,7 @@ export default class Tools {
     } else if (event.code == 'KeyB') {
       instruments.active(toolsList[2], '.tool');
       this.bucketTool();
-    } else if (event.code == 'KeyC') {
+    } else if (event.code == 'KeyK') {
       instruments.active(toolsList[3], '.tool');
       this.colorSwap();
     } else if (event.code == 'KeyE') {
@@ -799,6 +830,9 @@ export default class Tools {
     } else if (event.code == 'KeyR') {
       instruments.active(toolsList[7], '.tool');
       this.rectangleTool();
+    } else if (event.code == 'KeyC') {
+      instruments.active(toolsList[8], '.tool');
+      this.circleTool();
     } else if (event.code == 'KeyM') {
       instruments.active(toolsList[9], '.tool');
       this.moveTool();
@@ -808,6 +842,9 @@ export default class Tools {
     } else if (event.code == 'KeyT') {
       instruments.active(toolsList[12], '.tool');
       this.rotateTool();
+    } else if (event.code == 'KeyF') {
+      instruments.active(toolsList[13], '.tool');
+      this.flipTool();
     }
   }
 
@@ -826,6 +863,7 @@ export default class Tools {
     toolsList[9].addEventListener('click', () => this.moveTool());
     toolsList[11].addEventListener('click', () => this.ditheringTool());
     toolsList[12].addEventListener('click', () => this.rotateTool());
+    toolsList[13].addEventListener('click', () => this.flipTool());
   }
 
   changeTool() {

@@ -155,6 +155,10 @@ button:hover {
   background-position: -228px -46px;
 }
 
+.flip {
+  background-position: 0px -90px;
+}
+
 .move {
   background-position: -184px -228px;
 }
@@ -214,8 +218,6 @@ button:hover {
   top: -5px;
   left: 10px;
 }
-
-.color>input {}
 
 input[type='color'] {
   -webkit-appearance: none;
@@ -612,6 +614,16 @@ input[type='range'].frame_rate:focus::-ms-fill-upper {
 }
 
 .tool:hover .hint {
+  transition: 0.2s ease all;
+  display: block;
+}
+
+.downloadButton>.hint {
+  top: 50px;
+  left: -46px;
+}
+
+.downloadButton:hover .hint {
   transition: 0.2s ease all;
   display: block;
 }

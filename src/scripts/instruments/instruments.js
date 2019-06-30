@@ -166,45 +166,52 @@ export default class Intruments {
     }
   }
 
-  circleBresenhams(cX0, cY0, cX1, cY1, divider, ctx) {
+  circleBresenhams(x0, y0, x, y, divider, ctx) {
     const penSize = this.getPenSize();
-    // const dx = Math.abs(cX1 - cX0);
-    // const dy = Math.abs(cY1 - cY0);
-    // const sx = cX0 < cX1 ? 1 : -1;
-    // const sy = cY0 < cY1 ? 1 : -1;
-    // let err = dx - dy;
-    let coordX = null;
-    let coordY = null;
-    let R = Math.abs(cX0 - cX1);
-    let x = 0;
-    let y = R;
-    let delta = 1 - 2 * R;
-    let error = 0;
+    const radius = Math.sqrt((x - x0) ** 2 + (y - y0) ** 2);
+    let x1 = 0;
+    let y1 = radius;
+    let gap = 0;
+    let delta = 1 - 2 * radius;
 
-    while (y >= 0) {
-      coordX = cX0;
-      coordY = cY0;
-      coordX *= divider;
-      coordY *= divider;
+    while (y1 >= 0) {
+      ctx.fillRect(
+        Math.floor((x0 + x1) / divider) * divider,
+        Math.floor((y0 - y1) / divider) * divider,
+        divider * penSize,
+        divider * penSize
+      );
+      ctx.fillRect(
+        Math.floor((x0 - x1) / divider) * divider,
+        Math.floor((y0 - y1) / divider) * divider,
+        divider * penSize,
+        divider * penSize
+      );
+      ctx.fillRect(
+        Math.floor((x0 - x1) / divider) * divider,
+        Math.floor((y0 + y1) / divider) * divider,
+        divider * penSize,
+        divider * penSize
+      );
+      ctx.fillRect(
+        Math.floor((x0 + x1) / divider) * divider,
+        Math.floor((y0 + y1) / divider) * divider,
+        divider * penSize,
+        divider * penSize
+      );
 
-      ctx.fillRect(coordX + x, coordY + y, divider * penSize, divider * penSize);
-      ctx.fillRect(coordX + x, coordY - y, divider * penSize, divider * penSize);
-      ctx.fillRect(coordX - x, coordY + y, divider * penSize, divider * penSize);
-      ctx.fillRect(coordX - x, coordY - y, divider * penSize, divider * penSize);
-
-      error = 2 * (delta + y) - 1;
-      if (delta < 0 && error <= 0) {
-        x += 1;
-        delta += 2 * x + 1;
+      gap = 2 * (delta + y1) - 1;
+      if (delta < 0 && gap <= 0) {
+        x1 += 1;
+        delta += 2 * x1 + 1;
+      } else if (delta > 0 && gap > 0) {
+        y1 -= 1;
+        delta -= 2 * y1 + 1;
+      } else {
+        x1 += 1;
+        delta += 2 * (x1 - y1);
+        y1 -= 1;
       }
-
-      if (delta < 0 && error > 0) {
-        y -= 1;
-        delta -= 2 * y + 1;
-      }
-      x += 1;
-      delta += 2 * (x - y);
-      y -= 1;
     }
   }
 

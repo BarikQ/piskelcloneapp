@@ -8,9 +8,9 @@
       name="google-signin-client_id"
       content="1087138147820-h0vnaq3268gj241ctokv99ifr3jj25a3.apps.googleusercontent.com"
     />
+    <script src="./src/scripts/SingIn/SignIn.js"></script>
     <link rel="stylesheet" href="./bootstrap/bootstrap.css" />
     <link rel="stylesheet" href="./src/styles/style.css" />
-    <script src="./src/scripts/SingIn/SignIn.js"></script>
 
     <script></script>
     <title>New piskel</title>
@@ -46,7 +46,7 @@
             <li class="tool colorSwap" id="colorSwap_tool">
               <span class="hint"
                 >Paint all Pixels of the Same Color (Bugs with 64/128 sizes)
-                (<strong>C</strong>)</span
+                (<strong>K</strong>)</span
               >
             </li>
             <li class="tool eraser" id="eraser_tool">
@@ -63,7 +63,7 @@
               <span class="hint"> Create rectangle (<strong>R</strong>)</span>
             </li>
             <li class="tool circle" id="circle_tool">
-              <span class="hint">Doesn't work (<strong></strong>)</span>
+              <span class="hint">Circle Tool (<strong>C</strong>)</span>
             </li>
             <li class="tool move" id="move_tool">
               <span class="hint">Move your canvas (<strong>M</strong>)</span>
@@ -79,6 +79,9 @@
             </li>
             <li class="tool rotate" id="rotate_tool">
               <span class="hint">Rotate canvas (<strong>T</strong>)</span>
+            </li>
+            <li class="tool flip" id="flip_tool">
+              <span class="hint">Flip Tool (<strong>F</strong>)</span>
             </li>
           </ul>
           <div class="color_main color" id="color_tool color_main">
@@ -163,7 +166,12 @@
               <button class="renderButton" id="renderButton">Render Your Data</button>
               <button class="saveButton" id="saveButton">Save Your Data</button>
               <button class="clearButton" id="clearButton">Clear All Data</button>
-              <button class="downloadButton" id="downloadButton">Download Gif</button>
+              <button class="downloadButton" id="downloadButton">
+                Download Gif
+                <span class="hint">
+                  Before Download Gif Save All Your Progress to Local Storage!
+                </span>
+              </button>
             </div>
           </div>
 
