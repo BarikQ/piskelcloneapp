@@ -118,13 +118,22 @@ export default class Canvas {
       if (selectedSizeIndex === 0) scale = 1;
       else scale = selectedSizeIndex * 2;
 
-      sizeDefault = canvas.width / scaleDefault;
-      size = canvas.width / scale;
-
       mainCanvas.clearCanvas();
 
       ctx.imageSmoothingEnabled = false;
+
+      if (scaleDefault < scale) {
+        scale /= scaleDefault;
+        sizeDefault = canvas.width;
+        size = canvas.width / scale;
+      } else {
+        scaleDefault /= scale;
+        sizeDefault = canvas.width / scaleDefault;
+        size = canvas.width;
+      }
+
       ctx.drawImage(image, 0, 0, sizeDefault, sizeDefault, 0, 0, size, size);
+      ctx.imageSmoothingEnabled = false;
 
       framesImages.forEach((elem, index) => {
         canvasHelper.clearCanvas();

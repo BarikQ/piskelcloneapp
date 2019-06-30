@@ -1,8 +1,8 @@
 import Canvas from '../Canvas/Canvas';
 import Instruments from '../instruments/instruments';
 
-const mainCanvas = new Canvas(800, 800, 'mainCanvas', 'mainCanvas');
-const renderCanvas = new Canvas(800, 800, 'renderCanvas', 'renderCanvas');
+const mainCanvas = new Canvas(640, 640, 'mainCanvas', 'mainCanvas');
+const renderCanvas = new Canvas(640, 640, 'renderCanvas', 'renderCanvas');
 const instruments = new Instruments();
 
 export default class Frames {

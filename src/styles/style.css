@@ -23,7 +23,7 @@ button:hover {
   justify-content: space-around;
 }
 
-.navbar > button:hover {
+.navbar>button:hover {
   transition: 0.2s all ease;
   transform: scale(1.05);
 }
@@ -46,7 +46,7 @@ button:hover {
   justify-content: center;
 }
 
-.left-column > .list-group {
+.left-column>.list-group {
   width: 130px;
   overflow-y: scroll;
   display: block;
@@ -94,7 +94,7 @@ button:hover {
 
 .tools-list {
   display: grid;
-  grid-template: 1fr / 1fr;
+  grid-template: 1fr / repeat(2, 56px);
   grid-gap: 8px;
   padding: 5px;
   justify-items: center;
@@ -117,8 +117,16 @@ button:hover {
   background-position: -182px -92px;
 }
 
+.mirror {
+  background-position: 0px -136px;
+}
+
 .bucket {
   background-position: -228px -92px;
+}
+
+.rotate {
+  background-position: -90px 0px;
 }
 
 .colorSwap {
@@ -197,29 +205,26 @@ button:hover {
   text-shadow: 0 0 10px;
   display: flex;
   align-items: baseline;
-  width: 100%;
-  height: 100%;
+  height: 50px;
+  width: 140px;
 }
 
-.color > label {
+.color>label {
   position: relative;
   top: -5px;
   left: 10px;
 }
 
-.color > input {
-  border-radius: 10px;
-}
+.color>input {}
 
 input[type='color'] {
   -webkit-appearance: none;
   border: none;
   width: 32px;
   height: 32px;
-  box-shadow: 0 0 15px 0px red;
   border: 5px solid rebeccapurple;
-  border-radius: 50%;
   cursor: pointer;
+
 }
 
 input[type='color']::-webkit-color-swatch-wrapper {
@@ -229,7 +234,6 @@ input[type='color']::-webkit-color-swatch-wrapper {
 
 input[type='color']::-webkit-color-swatch {
   border: none;
-  border-radius: 50%;
   cursor: pointer;
 }
 
@@ -268,10 +272,26 @@ canvas {
   display: flex;
   flex-direction: column;
   width: 100%;
+  height: 50px;
+  width: 140px;
+  margin-top: 10px;
+}
+
+.size_select option,
+.size_pen option {
+  width: 140px;
 }
 
 .mainCanvas {
   z-index: 100;
+  height: 640px;
+  width: 640px;
+}
+
+.canvas-main-container>canvas {
+  transform: scale(1.25);
+  height: 640px;
+  width: 640px;
 }
 
 .full {
@@ -336,7 +356,7 @@ canvas {
 .clearButton,
 .renderButton,
 .downloadButton,
-.nav_btn_container > button,
+.nav_btn_container>button,
 .add-btn {
   border: 3px solid rebeccapurple;
   border-radius: 10rem;
@@ -353,28 +373,28 @@ canvas {
   justify-content: center;
 }
 
-.author > h2 {
+.author>h2 {
   text-shadow: 0px 0px 15px rebeccapurple;
   font-weight: 200;
   color: red;
   transition: 0.2s ease all;
 }
 
-.author > h2 > a {
+.author>h2>a {
   color: red;
 }
 
-.author > h2:hover {
+.author>h2:hover {
   transition: 0.2s ease all;
   transform: scale(1.05);
 }
 
-.author > h2:hover > a {
+.author>h2:hover>a {
   text-shadow: 0px 0px 15px white;
   text-decoration: none;
 }
 
-.localStorageButtons > button {
+.localStorageButtons>button {
   margin: 5px 0;
 }
 
@@ -552,19 +572,18 @@ input[type='range'].frame_rate:focus::-ms-fill-upper {
   width: 800px;
   margin-top: 15px;
   box-shadow: 0px 0px 15px 2px red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .canvasHelper {
   position: absolute;
-  top: 0;
-  left: 0;
   z-index: -1;
 }
 
 .renderCanvas {
   position: absolute;
-  top: 0;
-  left: 0;
   z-index: 101;
 }
 
@@ -595,4 +614,12 @@ input[type='range'].frame_rate:focus::-ms-fill-upper {
 .tool:hover .hint {
   transition: 0.2s ease all;
   display: block;
+}
+
+.tool:hover {
+  z-index: 1001;
+}
+
+.hint>strong {
+  color: red;
 }

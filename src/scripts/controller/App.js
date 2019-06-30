@@ -13,8 +13,8 @@ export default class App {
   }
 
   start() {
-    const mainCanvas = new Canvas(800, 800, 'mainCanvas', 'mainCanvas');
-    const canvasHelper = new Canvas(800, 800, 'canvasHelper', 'canvasHelper');
+    const mainCanvas = new Canvas(640, 640, 'mainCanvas', 'mainCanvas');
+    const canvasHelper = new Canvas(640, 640, 'canvasHelper', 'canvasHelper');
     const tools = new Tools();
     const frames = new Frames();
     const preview = new Preview();
@@ -63,7 +63,7 @@ export default class App {
 
     fullScr.addEventListener('click', () => instruments.fullScreen(preview.getParent()));
 
-    instruments.showCanvasInfo();
+    instruments.showCanvasInfo(mainCanvas);
     preview.startAnimation(0);
 
     selectSize.addEventListener('click', event =>
@@ -71,6 +71,9 @@ export default class App {
     );
 
     downloadButton.addEventListener('click', instruments.downloadGif);
+
+    document.body.addEventListener('keyup', event => tools.keyPess(event));
+
     $(() => {
       $('#sortable').sortable();
       $('#sortable').disableSelection();

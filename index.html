@@ -5,6 +5,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <meta
+      name="google-signin-client_id"
+      content="1087138147820-h0vnaq3268gj241ctokv99ifr3jj25a3.apps.googleusercontent.com"
+    />
   <link rel="stylesheet" href="./bootstrap/bootstrap.css" />
   <link rel="stylesheet" href="./src/styles/landing.css" />
   <title>Piskel Clone</title>
@@ -19,7 +23,7 @@
         <button class="create_sprite" id="create_sprite">
           Create Sprite
         </button>
-        <button class="sign_in" id="sign_in">Sign In</button>
+        <button class="sign_in g-signin2" id="sign_in" data-onsuccess="onSignIn">Sign In</button>
       </div>
     </nav>
 
@@ -43,6 +47,9 @@
       </div>
     </footer>
     <a href="piskel.html" target="_blank">Check this out!</a>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
   </body>
 
 </html>

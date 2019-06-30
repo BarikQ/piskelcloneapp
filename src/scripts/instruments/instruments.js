@@ -3,7 +3,7 @@ import gifshot from '../gifshot';
 
 const hexToRgba = require('hex-to-rgba');
 
-const mainCanvas = new Canvas(800, 800, 'mainCanvas', 'mainCanvas');
+const mainCanvas = new Canvas(640, 640, 'mainCanvas', 'mainCanvas');
 
 export default class Intruments {
   getCanvasSize() {
@@ -27,16 +27,16 @@ export default class Intruments {
       top: canvas.getBoundingClientRect().top
     };
     const coords = {};
-    coords.x = e.clientX - canvBox.left;
-    coords.y = e.clientY - canvBox.top;
+    coords.x = e.offsetX;
+    coords.y = e.offsetY;
     return coords;
   }
 
-  showCanvasInfo() {
+  showCanvasInfo(target) {
     let size = this.getCanvasSize();
     const selectSize = document.querySelector('#sizes_canvas');
     const coordsWrapper = document.querySelector('#cursor_coords');
-    const canvas = [mainCanvas.getCanvas().canvas][0];
+    const canvas = [target.getCanvas().canvas][0];
     let coords = null;
 
     let divider = canvas.width / size;
@@ -48,7 +48,7 @@ export default class Intruments {
       sizeWrapper.innerHTML = `${size}x${size}`;
     });
 
-    mainCanvas.getCanvas().canvas.addEventListener('mousemove', e => {
+    target.getCanvas().canvas.addEventListener('mousemove', e => {
       coords = this.getCursorCoords(e);
       coords.x = Math.floor(coords.x / divider);
       coords.y = Math.floor(coords.y / divider);
@@ -140,8 +140,17 @@ export default class Intruments {
     const sx = cX0 < cX1 ? 1 : -1;
     const sy = cY0 < cY1 ? 1 : -1;
     let err = dx - dy;
+    let coordX = null;
+    let coordY = null;
 
     while (true) {
+      coordX = cX0;
+      coordY = cY0;
+      coordX *= divider;
+      coordY *= divider;
+
+      ctx.fillRect(coordX, coordY, divider * penSize, divider * penSize);
+
       if (cX0 === cX1 && cY0 === cY1) {
         break;
       }
@@ -154,15 +163,54 @@ export default class Intruments {
         err += dx;
         cY0 += sy;
       }
+    }
+  }
 
-      ctx.fillRect(cX0 * divider, cY0 * divider, divider * penSize, divider * penSize);
+  circleBresenhams(cX0, cY0, cX1, cY1, divider, ctx) {
+    const penSize = this.getPenSize();
+    // const dx = Math.abs(cX1 - cX0);
+    // const dy = Math.abs(cY1 - cY0);
+    // const sx = cX0 < cX1 ? 1 : -1;
+    // const sy = cY0 < cY1 ? 1 : -1;
+    // let err = dx - dy;
+    let coordX = null;
+    let coordY = null;
+    let R = Math.abs(cX0 - cX1);
+    let x = 0;
+    let y = R;
+    let delta = 1 - 2 * R;
+    let error = 0;
+
+    while (y >= 0) {
+      coordX = cX0;
+      coordY = cY0;
+      coordX *= divider;
+      coordY *= divider;
+
+      ctx.fillRect(coordX + x, coordY + y, divider * penSize, divider * penSize);
+      ctx.fillRect(coordX + x, coordY - y, divider * penSize, divider * penSize);
+      ctx.fillRect(coordX - x, coordY + y, divider * penSize, divider * penSize);
+      ctx.fillRect(coordX - x, coordY - y, divider * penSize, divider * penSize);
+
+      error = 2 * (delta + y) - 1;
+      if (delta < 0 && error <= 0) {
+        x += 1;
+        delta += 2 * x + 1;
+      }
+
+      if (delta < 0 && error > 0) {
+        y -= 1;
+        delta -= 2 * y + 1;
+      }
+      x += 1;
+      delta += 2 * (x - y);
+      y -= 1;
     }
   }
 
   getPixelColor(imgData, x, y) {
     const index = (y * imgData.width + x) * 4;
     const rgba = {};
-    console.log(index);
 
     rgba.r = imgData.data[index];
     rgba.g = imgData.data[index + 1];
