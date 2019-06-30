@@ -623,3 +623,7 @@ input[type='range'].frame_rate:focus::-ms-fill-upper {
 .hint>strong {
   color: red;
 }
+
+.userData {
+  display: none;
+}

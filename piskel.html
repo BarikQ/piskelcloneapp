@@ -26,6 +26,11 @@
         </button>
         <button class="sign_in g-signin2" id="sign_in" data-onsuccess="onSignIn">Sign In</button>
       </div>
+      <div class="userData">
+        <p></p>
+        <img class="userPic" id="userPic" />
+        <button class="sign_out" id="sign_put" onclick="signOut()"></button>
+      </div>
     </nav>
 
     <div class="container-fluid">
@@ -182,6 +187,7 @@
 
     <script src="./dist/app.bundle.js"></script>
     <script src="./dist/gifshot.js"></script>
+    <script src="./src/scripts/SingIn/SignIn.js"></script>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   </body>
