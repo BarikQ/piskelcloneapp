@@ -53,7 +53,7 @@ export default class Tools {
         coordY *= divider;
 
         if (mirror.classList.contains('active')) {
-          ctx.fillRect(canvas.width - coordX, coordY, divider * penSize, divider * penSize);
+          ctx.fillRect(canvas.width - coordX - divider, coordY, divider * penSize, divider * penSize);
         }
         ctx.fillRect(coordX, coordY, divider * penSize, divider * penSize);
 
@@ -190,7 +190,6 @@ export default class Tools {
 
       x1 = Math.floor(e.offsetX / divider);
       y1 = Math.floor(e.offsetY / divider);
-      console.log(x1, y1);
 
       instruments.simpleBresenhams(x0, y0, x1, y1, divider, ctx);
       frames.render();
